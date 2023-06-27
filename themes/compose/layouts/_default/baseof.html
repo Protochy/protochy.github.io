@@ -1,0 +1,91 @@
+{{ $config := site.Params }}
+{{ $context := . }}
+<!doctype html>
+<html lang="{{ site.Language.Lang }}"{{ with $config.enableDarkMode }} class="dark"{{ end }}{{ with $config.defaultLightingMode }}
+  data-mode="{{ . }}"
+{{ end }}>
+<head>
+  {{- partial "head" . }}
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css">
+  $$\gdef\f#1#2{\frac{#1}{#2}}
+  \gdef\mbb#1{\mathbb{#1}}
+\gdef\mfk#1{\mathfrak{#1}}
+
+\gdef\c#1{\color{#1}}
+
+
+\gdef\vecD#1#2{\begin{bmatrix} 
+    #1 \\
+    #2
+    \end{bmatrix}}
+    
+\gdef\vecT#1#2#3{\begin{bmatrix} 
+    #1 \\
+    #2 \\ 
+    #3
+    \end{bmatrix}}
+\gdef\x{\cdot} 
+\gdef\tu#1{\textup{#1}} 
+\gdef\deriv#1{\f{\tu{d}}{\tu{d}#1}}
+\gdef\dx#1{\tu{d}{#1}}
+\gdef\vec#1{\overrightarrow{#1}}
+$$
+
+  
+</head>
+<body class="page-{{ .Kind }}" id="pagetop">
+  <header class="nav_header">
+    {{- partial "nav" . }}
+  </header>
+  {{ if or (eq .Section site.Params.blogDir) (eq .Type "search" ) }}
+    {{- block "main" . }}{{ end }}
+  {{ else }}
+  <div class="main wrap pt-4">
+    {{ $docSections := site.Params.docSections }}
+    {{- with $docSections }}{{- else }}
+      {{- $docSections = "docs" }}
+    {{- end }}
+    {{ $uniqueHomepage := .IsHome }}
+    {{ if site.Params.uniqueHomepage }}
+      {{ if .IsHome }}
+        {{ $uniqueHomepage = true }}
+      {{ end }}
+    {{ else }}
+      {{ $uniqueHomepage = false }}
+    {{ end }}
+    {{- if and (in $docSections .Section) (ne $uniqueHomepage true) }}
+      {{- partial "document" . }}
+    {{- else }}
+      <div class="content">
+        {{- block "main" . }}{{ end }}
+      </div>
+    {{- end -}}
+  </div>
+  {{ end }}
+  {{- partial "scripts/translations" . -}}
+  <!-- {{- partialCached "footer" . -}} -->
+  {{- partialCached "sprites" . -}}
+  {{- partial "scripts/bundle" . -}}
+  {{- partial "scripts/other" . -}}
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "\\[", right: "\\]", display: true},
+                {left: "$", right: "$", display: false},
+                {left: "\\(", right: "\\)", display: false}
+            ]
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

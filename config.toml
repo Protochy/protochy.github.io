@@ -1,0 +1,21 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Loon"
+theme = "compose"
+
+[params]
+  description = "Hello"
+  images = ["images/og-image.jpg"]
+  twitter = "Your Twitter username"
+  github = "Your GitHub username"
+  blogDir = "blog"
+  customCSS = ["css/custom.css"] # Include custom CSS files
+  customJS = ["js/custom.js"] # Include custom JS files
+[outputs]
+  home = ["HTML", "RSS","JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+

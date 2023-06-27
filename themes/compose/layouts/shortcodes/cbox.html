@@ -1,0 +1,23 @@
+<div class="custom-box" style="background-color: transparent;">
+    <div class="gradient-text">
+        {{ markdownify .Inner }}
+    </div>
+</div>
+
+<style>
+    .custom-box {
+        display: inline-block;
+        border: 3px solid transparent;
+        border-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        border-image-slice: 1;
+        border-radius: 10px;
+        padding: 5px 16px;
+        text-align: left;
+    }
+    .gradient-text {
+        background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+</style>

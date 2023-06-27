@@ -1,0 +1,7 @@
+{{- $color := .Get "color" }}
+{{- if not $color }}
+    {{- $color = .Get 0 }}
+{{- end }}
+<span style="display: inline; color: {{ $color }}">
+    {{ markdownify .Inner }}
+</span>

@@ -1,0 +1,47 @@
+<div>
+    <h3>Current Subsection:</h3>
+    {{ with .Page.Parent }}
+        <p>{{ .Title }}</p>
+    {{ else }}
+        <p>No parent section.</p>
+    {{ end }}
+
+    <h3>Pages in Current Subsection:</h3>
+    <ul>
+        {{ if .Page.IsSection }}
+            {{ range .Page.Pages }}
+                <li>{{ .Title }} - {{ .Permalink }}</li>
+            {{ end }}
+        {{ else }}
+            {{ with .Page.Parent }}
+                {{ range .Pages }}
+                    <li>{{ .Title }} - {{ .Permalink }}</li>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </ul>
+
+    <h3>Previous Subsection:</h3>
+    {{ with (.Site.Pages.ByWeight.Prev $.Page) }}
+        <p>{{ .Title }}</p>
+        <ul>
+            {{ range .Pages }}
+                <li>{{ .Title }} - {{ .Permalink }}</li>
+            {{ end }}
+        </ul>
+    {{ else }}
+        <p>N/A</p>
+    {{ end }}
+
+    <h3>Next Subsection:</h3>
+    {{ with (.Site.Pages.ByWeight.Next $.Page) }}
+        <p>{{ .Title }}</p>
+        <ul>
+            {{ range .Pages }}
+                <li>{{ .Title }} - {{ .Permalink }}</li>
+            {{ end }}
+        </ul>
+    {{ else }}
+        <p>N/A</p>
+    {{ end }}
+</div>

@@ -1,0 +1,8 @@
+{{- $normal := "kekw.png" }}
+{{- $dark := "kekw.png" }}
+{{- $alt := .Get 0 }}
+{{- $litPath := absURL (printf "images/%s" $normal) }}
+{{- $darkPath := absURL (printf "images/%s" $dark) }}
+<picture class="nav_logo" data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
+  <img src="{{ $litPath }}" alt="{{ $alt }}" style="max-width: 32px; max-height: 32px;">
+</picture>
