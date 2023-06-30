@@ -5,8 +5,6 @@ description: >
   What do you need to know for Multivar?
 ---
 
-okay, you're here cuz u wanna know what the fuck u gotta know before reading this ~~master~~shitpiece
-
 ### Vectors (and some matrices)
 I mean, its just a bunch of fuckin numbers collected together, 
 {{< centr >}}
@@ -17,6 +15,7 @@ $$\Large \color{pink} \vecD{2}{3}$$see?
 
 In any case, check out 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+# FIX THIS ON PHONE, STRETCHES SCREEN, MAKE WIDTH DYNAMIC
 
 at the very least, it's an enjoyable watch
 

@@ -25,8 +25,9 @@ So with that in mind, let's dive into the formula of the dot product.
 
 {{< centr >}}
 {{< box color="cyan" background="transparent" >}}
-
+Formula 1. Scalar (Dot) Product
 $$\c{lime} \Large \vec{a} \x \vec{b} = \c{pink} \left|\vec{a}\right| \x \left|\vec{b}\right| \x \cos(\theta) = \c{turquoise} \sum_{i=1}^{n} a_i b_i$$
+
 {{< toggle showText="Show proof" hideText="Hide proof" >}}
 hi reeshav, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}
@@ -35,7 +36,7 @@ hi reeshav, figure it out yourself (kidding itll come soon)
 
 where $\Large \c{tan} \left|\vec{a}\right|$ represents the **magnitude** of $\c{tan} \vec{a}$,
 
-$\Large \c{pink} \theta$ represents the angle between $\Large \c{tan} \vec{a}$ and $\Large \c{tan} \vec{b}$, 
+$\Large \c{pink} \theta$ represents the angle between $ \c{tan} \vec{a}$ and $ \c{tan} \vec{b}$, 
 
 and $\Large \c{magenta} a_i$ represents the i<sup>th</sup> component of $\c{tan} \vec{a}$
 

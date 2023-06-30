@@ -19,5 +19,5 @@ okay, you're here cuz u wanna know what the fuck u gotta know before reading thi
 <br>
 
 {{< centr >}}
-{{< button "chapter1" " # Chapter 1!" >}}
+{{< button "../chapter-1" " # Chapter 1!" >}}
 {{< /centr >}}

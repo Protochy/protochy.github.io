@@ -280,10 +280,8 @@ function loadActions() {
     let target = event.target;
     let mode_class = 'color_choice';
     let is_mode_toggle = containsClass(target, mode_class);
-    //is_mode_toggle ? setUserColorMode(true) : false;
-    toggleMenu(event); 
-    if (is_mode_toggle)
-      alert("STOP FUCKING CLICKING THIS");
+    is_mode_toggle ? setUserColorMode(true) : false;
+    toggleMenu(event);
   });
 }
 
