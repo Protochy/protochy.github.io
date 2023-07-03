@@ -15,5 +15,24 @@ It's {{< col color="tan">}} Micky D{{< /col >}} here and $\Large \color{yellow} 
 
 {{< button "./clarity/" "Linear Algebra" >}}
 
+## Problem ratings:
+
+{{< box "lime" "white" "transparent">}}
+Pretty *simple*.
+{{</ box >}}
+<br>
+
+{{< box "yellow" "white" "transparent" >}}
+Important to know. Usually not easy but not too difficult.
+{{</ box >}}  
+<br>
+{{< box "red" "white" "transparent" >}}
+Hard. Tests your knowledge!
+{{</ box >}}
+<br>
+{{< tip "imp" >}}
+Really hard. Good challenge problem!
+{{</ tip >}}
+
 
 

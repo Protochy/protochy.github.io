@@ -308,11 +308,27 @@
       padding-top: 0
     &:last-child
       padding-bottom: 0
-  &_warning
+  &_ez
+    line-height: 2.0
+    --theme: #00FF00
+  &_ez::before
+    transform: rotate(180deg)
+  &_med
+    line-height: 2.0
+    --theme: #FFEA00
+  &_med::before
+    transform: rotate(180deg)
+  &_warn
     line-height: 2.0
     --theme: var(--inline-color)
-  &_warning::before
+  &_warn::before
     transform: rotate(180deg)
+  &_imp
+    line-height: 2.0
+    --theme: #9966cc  
+  &_imp::before
+    background-image:var(--warn-icon) !important
+    background-size: 100% !important
   &::before
     content: ""
     position: absolute

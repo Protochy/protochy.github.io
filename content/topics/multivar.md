@@ -1,6 +1,6 @@
 ---
 title: "Multivariable Calculus"
-weight: 2
+weight: 3
 ---
 
 aight, this is {{< col color="magenta">}} calc iii
