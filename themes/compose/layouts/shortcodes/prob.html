@@ -1,0 +1,15 @@
+<!-- layouts/shortcodes/box.html -->
+<div style="display: block;">
+    <div style="display: inline-block; max-width:100% !important; border: 3px solid 
+      {{ if eq (.Get 0) "easy" }}lime
+      {{ else if eq (.Get 0) "med" }}yellow
+      {{ else if eq (.Get 0) "hard" }}red
+      {{ else if eq (.Get 0) "imp" }}purple
+      {{ else }}white{{ end }};
+      border-radius: 10px; padding: 5px 16px; text-align: left; color: 
+      {{ .Get 1 | default "white" }}; background-color: 
+      {{ .Get 2 | default "transparent" }}; overflow-x: auto; overflow-y: hidden;">
+      {{ .Inner | markdownify }}
+    </div>
+  </div>
+  

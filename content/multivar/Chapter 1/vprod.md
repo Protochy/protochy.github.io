@@ -150,22 +150,19 @@ TODO: finish problems, add more examples, clean up, do cross product stuff, make
 
 ### Problems
 
-{{<box "lime" "white" "transparent">}}
+{{<prob "easy">}}
 1. Prove that 
 $$ \Large \c{orange} (\vec{a} \times \vec{b}) \x \vec{a} = (\vec{a} \times \vec{b}) \x \vec{b} = 0$$
-{{</ box >}}
+{{</ prob >}}
 <br>
-
-{{<box "yellow" "white" "transparent">}}
+{{<prob "med">}}
 2. Given three vectors $\Large \c{lime} \vec{a},\vec{b},\vec{c} \in \mbb{R}^3$, show that $$\Large \c{orange} (\vec{a} \times \vec{b}) \c{lime} \x \vec{c} = \c{cyan} \det\left(\begin{bmatrix} a_1 & b_1 & c_1 \\\ a_2 & b_2 & c_2 \\\ a_3 & b_3 & c_3 \end{bmatrix}\right)$$
 {{< col "cyan">}} or in other words, the {{< col "red" >}} volume {{</ col >}} of the *parallelepiped* spanned by the three vectors. {{</ col >}}
-{{</ box >}}
+{{</ prob >}}
 <br>
-
-{{<box "red" "white" "transparent">}}
+{{<prob "hard">}}
 3. Prove that the area of a *simple* polygon is given by
-$$\Large \c{lime} \f{1}{2} \x \sum_{i=0}^{n-1} \vec{v_i} \times \vec{v_{i+1}}$$
-{{</ box >}}
-<br>  
+$$\Large \c{lime} \f{1}{2} \x \sum_{i=0}^{n-1} \\left|\vec{v_i} \times \vec{v_{i+1}}\\right|$$
+{{</ prob >}}  
 
 
