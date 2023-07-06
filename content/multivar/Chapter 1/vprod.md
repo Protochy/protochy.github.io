@@ -88,7 +88,7 @@ Let's go over projections now. Suppose I asked you to find the projection of $\c
 
 
  {{< tip >}}
-New skill unlocked! You can now **project** your deepest insecurities on others.
+New skill unlocked! You can now **project** your deepest insecurities on others. {{< kekwait >}}
 {{</ tip >}}
  {{</ toggle >}}
 
@@ -143,8 +143,32 @@ A Geometrical Intuition:
 {{</ centr >}}
 
  <img src="/anim/im/crossprod1.png" alt="Cross Product Example" width="1280" height="720"> 
-okay, lots to unpack here.
-TODO: finish problems, add more examples, clean up, do cross product stuff, make manim anims for problems, ok bye
+
+ <h4> Understanding the {{<col "orange">}} cross product {{</ col >}} </h4>
+
+ the cross product of two vectors $\Large \c{orange} \vec{a} \times \vec{b}$ is **perpendicular** to both $\c{lime} \vec{a}$ and $\c{orchid} \vec{b}$, and its magnitude/length is equal to the *area of the parallelogram* (shown in the figure) spanned by $\c{lime} \vec{a}$ and $\c{orchid} \vec{b}$.
+ 
+A short list of a few properties of the cross product:
+Distributes, scalar mult,yadda yadad
+
+| Properties      | Description |
+| ----------- | ----------- |
+| Scalar multiplication      | $\c{pink} \vec{a} \times (c\vec{b}) = c(\vec{a} \times \vec{b})$ for some scalar (NOOOOOMBER) $\c{pink} c$ {{< toggle showText="Show proof" hideText="Hide proof" >}}
+hi reeshav, figure it out yourself (kidding itll come soon)
+{{< /toggle >}}      |
+| Anticommutative      | $\c{orange} \vec{a} \times \vec{b} = -\vec{b} \times \vec{a}$ {{< toggle showText="Show proof" hideText="Hide proof" >}}
+hi reeshav, figure it out yourself (kidding itll come soon)
+{{< /toggle >}}      |
+| Distributivity (over addition)  | $\c{violet} \vec{a} \times (\vec{b} + \vec{c}) = \vec{a} \times \vec{b} + \vec{a} \times \vec{c}$ mmmm also very nice{{< toggle showText="Show proof" hideText="Hide proof" >}}
+hi reeshav, figure it out yourself (kidding itll come soon)
+{{< /toggle >}}        |
+
+note that Scalar mult and Anticommutativity are pretty visually intuitive using {{< rcol >}} geometry {{</ rcol >}} to prove.
+
+{{< tip >}}
+The cross product can only be defined for 3 and 7 dimensional vectors {{< kekwait >}} (while preserving the more useful properties such as being orthogonal and having the magnitude of the area spanned between the two input vectors). 
+{{</ tip>}}
+
 <br>
 <br>
 
