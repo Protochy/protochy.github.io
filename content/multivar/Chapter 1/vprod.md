@@ -24,7 +24,7 @@ TL;DW dot product is just a measure of how "close" two vectors are. if they poin
 So with that in mind, let's dive into the formula of the dot product.
 
 {{< centr >}}
-{{< box "white" "lime" "transparent" >}}
+{{< box "white" "transparent" "lime" >}}
 Formula 1. Scalar (Dot) Product
 $$\c{lime} \Large \vec{a} \x \vec{b} = \c{pink} \left|\vec{a}\right| \x \left|\vec{b}\right| \x \cos(\theta) = \c{turquoise} \sum_{i=1}^{n} a_i b_i$$
 
@@ -120,7 +120,7 @@ now onto the more painful one, famously unintuitive with the crazy determinant f
 Just like the dot product, there is an analagous 3b1b video \[insert\] that excellently addresses the motivation and intuition of the cross product.
 
 {{< centr >}}
-{{< box "white" "orange" "transparent" >}}
+{{< box "white" "transparent" "orange" >}}
 Formula 2a. Vector (Cross) Product
 $$\c{orange} \Large \vec{a} \times \vec{b} = \c{orange} \det\left(\begin{bmatrix} \vec{i} & \vec{j} & \vec{k} \\\ \c{lime} \vec{a}_1 & \c{lime} \vec{a}_2 & \c{lime} \vec{a}_3 \\\ \c{pink} \vec{b}_1 & \c{pink} \vec{b}_2 & \c{pink} \vec{b}_3 \\\ \end{bmatrix} \c{orange}\right) = \vecT{\c{lime} a_2 \c{pink} b_3 - \c{lime} a_3 \c{pink} b_2}{\c{lime} a_3 \c{pink} b_1 - \c{lime} a_1 \c{pink} b_3}{\c{lime} a_1 \c{pink} b_2 - \c{lime} a_2 \c{pink} b_1}$$
 
@@ -132,7 +132,7 @@ hi reeshav, figure it out yourself (kidding itll come soon)
 
 <br>
 <br>
-{{< box "white" "orange" "transparent" >}}
+{{< box "white" "transparent" "orange" >}}
 Formula 2b. *Magnitude* of Vector (Cross) Product
 $$\Large \c{orange} \left| \vec{a} \times \vec{b}\right| = \c{lime} \left|\vec{a}\right| \x \c{pink} \left|\vec{b}\right| \c{orange} \x \sin(\theta)$$
 
@@ -186,7 +186,9 @@ $$ \Large \c{orange} (\vec{a} \times \vec{b}) \x \vec{a} = (\vec{a} \times \vec{
 <br>
 {{<prob "hard">}}
 3. Prove that the area of a *simple* polygon is given by
-$$\Large \c{lime} \f{1}{2} \x \sum_{i=0}^{n-1} \\left|\vec{v}_i \times \vec{v}_{i+1}\\right|$$
+$$ \Large \\c{lime} \\f{1}{2} \\x \left(\\sum_{i=1}^{n-1} \left|\vec{v}_i \times \\vec{v}\_{i+1}\right| + \left|\vec{v}_n \times \\vec{v}\_{1}\right| \right)$$
+<img src="/anim/im/mvchap1/shoelace.png" alt="Shoelace Example" width="1280" height="720"> 
+An example for $\c{orange} n = 5$
 {{</ prob >}}  
 
 

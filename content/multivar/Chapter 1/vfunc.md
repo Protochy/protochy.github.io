@@ -12,7 +12,7 @@ So what exactly ISSSSS a vector function? Well to fully answer that, we need to 
 ### Scalar functions
 
 {{< centr >}}
-{{< box "white" "pink" "transparent" >}}
+{{< box "white" "transparent" "pink" >}}
 Definition 1. Scalar Fucking Function  
 
 Literally just every function you've seen before:
@@ -46,7 +46,7 @@ We'll see more of this when we cover paths, but essentially what the {{< rcol >}
 let's end with a formal-ish definition:
 
 {{< centr >}}
-{{< box "orchid" "turquoise" "transparent" >}}
+{{< box "orchid" "transparent" "turquoise" >}}
 Definition 2. Vector valued Fucktion
 
 Let $\c{orchid} \vec{r}: \mbb{R} \to \mbb{R}^n$, then
@@ -57,7 +57,7 @@ $$\Large \c{orchid} \vec{r}(t) =\begin{bmatrix} r_1(t) \\\\[1.1ex\] r_2(t) \\\\[
 Now, let's look at differentiating this function. 
 
 {{< centr >}}
-{{< box "white" "orchid" "transparent" >}}
+{{< box "white" "transparent" "orchid" >}}
 Definition 3. Derivative of a vector function
 
 $$\Large \c{orchid} \vec{r'}(t) = \lim_{h \to 0} \frac{\vec{r}(t+h) - \vec{r}(t)}{h}$$
