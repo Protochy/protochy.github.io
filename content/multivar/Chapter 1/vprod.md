@@ -186,8 +186,8 @@ $$ \Large \c{orange} (\vec{a} \times \vec{b}) \x \vec{a} = (\vec{a} \times \vec{
 <br>
 {{<prob "hard">}}
 3. Prove that the area of a *simple* polygon is given by
-$$ \Large \\c{lime} \\f{1}{2} \\x \left(\\sum_{i=1}^{n-1} \left|\vec{v}_i \times \\vec{v}\_{i+1}\right| + \left|\vec{v}_n \times \\vec{v}\_{1}\right| \right)$$
-<img src="/anim/im/mvchap1/shoelace.png" alt="Shoelace Example" width="1280" height="720"> 
+$$ \Large \\c{lime} \\f{1}{2} \\x \left(\left\|\vec{v}\_n \times \\vec{v}\_{1}\right| +  \\sum_{i=1}^{n-1} \left|\vec{v}_i \times \\vec{v}\_{i+1}\right| \right)$$
+<img src="/anim/mvchap1/shoelace.png" alt="Shoelace Example" width="1280" height="720"> 
 An example for $\c{orange} n = 5$
 {{</ prob >}}  
 

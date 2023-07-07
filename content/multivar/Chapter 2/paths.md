@@ -1,6 +1,6 @@
 ---
 title: "Path"
-weight: 9
+weight: 11
 description: >
   Everything paths!
 ---

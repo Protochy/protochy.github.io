@@ -39,7 +39,7 @@ ok, now let's investigate what happens as we range $\c{pink} t$ from $\c{pink} 0
 
 nice, a circle! anyway, we associate each t value with a corresponding *2D vector*, which is why the whole thing still works. 
 {{< tip >}}
-We'll see more of this when we cover paths, but essentially what the {{< rcol >}} rainbow {{</ rcol >}} thing drew out was a **path**. 
+We'll see more of this when we cover *curves*, but essentially what the {{< rcol >}} rainbow {{</ rcol >}} thing drew out was a **path**. 
 {{</ tip >}}
 {{< divide >}}
 
@@ -53,6 +53,11 @@ Let $\c{orchid} \vec{r}: \mbb{R} \to \mbb{R}^n$, then
 $$\Large \c{orchid} \vec{r}(t) =\begin{bmatrix} r_1(t) \\\\[1.1ex\] r_2(t) \\\\[1.1ex\] \vdots \\\\[1.1ex\] r_n(t) \end{bmatrix}$$
 {{</ box >}}
 {{</ centr >}}
+{{< tip >}}
+You may also see a different notation: 
+$$\Large \c{orchid} \vec{r}(t) = \langle r_1(t), r_2(t), \dotsc, r_n(t) \rangle$$
+They're the same thing so worry not!
+{{</ tip >}}
 ### Differentiation
 Now, let's look at differentiating this function. 
 
