@@ -1,12 +1,6 @@
-<span class="gradient-text">
+<span style="display: inline; background: linear-gradient(to right, red, orange, yellow, lime, cyan, violet);
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;">
     {{ markdownify .Inner }}
 </span>
-
-<style>
-    .gradient-text {
-        background: linear-gradient(to right, red, orange, yellow, lime, cyan, violet);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-</style>

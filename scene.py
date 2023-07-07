@@ -253,8 +253,13 @@ class VF(Scene):
         self.wait()
 
 
-class PictureScene(ThreeDScene):
+class PictureScene(Scene):
     def construct(self):
+        def sub(self, other):
+            return Line(self.get_start() - other.get_start(), self.get_end() - other.get_end())
+
+        Line.__sub__ = sub
+
         # Number plane
         npl = NumberPlane()
 
@@ -266,7 +271,6 @@ class PictureScene(ThreeDScene):
         angle = Angle(vector_2, vector_1, radius=0.5, color=RED)
         theta_label = MathTex("\\theta").next_to(angle, RIGHT, buff=0.12).set_color("#da70d6")
 
-        # Projection
         vector_1_np = np.array([2, 1, 0])
         vector_2_np = np.array([3, -1, 0])
         dot_product = np.dot(vector_1_np, vector_2_np)
@@ -274,23 +278,22 @@ class PictureScene(ThreeDScene):
         projection = (dot_product / magnitude_squared) * vector_2_np
         projection_vector = Vector(projection).set_color(ORANGE)
 
-        # Dashed Line
         dashed_line = DashedLine(vector_1.get_end(), projection_vector.get_end(), dash_length=0.1).set_color(GRAY)
 
-        # Labels
-        a_label = MathTex(r"\vec{a}").next_to(vector_1.get_end(), UP,buff=0.2).set_color(YELLOW)
-        b_label = MathTex(r"\vec{b}").next_to(vector_2.get_end(), RIGHT,buff=0.2).set_color("#AFEEEE")
-
-        # Projection label
+        a_label = MathTex(r"\vec{a}").next_to(vector_1.get_end(), UP, buff=0.15).set_color(YELLOW)
+        b_label = MathTex(r"\vec{b}").next_to(vector_2.get_end(), RIGHT, buff=0.15).set_color("#AFEEEE")
         proj_label_text = "\\text{proj}_{\\vec{b}} \\vec{a}"
         angle_of_projection = np.arctan2(projection[1], projection[0])
         proj_label = MathTex(proj_label_text).next_to(projection_vector, DOWN, buff=-0.1).rotate(
             angle_of_projection).set_color(ORANGE)
 
-        # Group and scale
-        v = VGroup(npl, vector_1, vector_2, projection_vector, dashed_line, angle, theta_label, a_label, b_label,
+        right_angle = RightAngle(line1=projection_vector, line2=Line(vector_1.get_end(), projection_vector.get_end()),
+                                 length=0.25, color=BLUE, quadrant=(-1, -1))
+
+        v = VGroup(npl, right_angle, vector_1, vector_2, projection_vector, dashed_line, angle, theta_label, a_label,
+                   b_label,
                    proj_label)
-        v.scale(1.5)
+        v.scale(2.0)
 
         # Add to scene
         self.add(v)
@@ -307,12 +310,12 @@ class CrossProductScene(ThreeDScene):
         # Create the first vector (lime color)
         vec1 = Arrow3D(start=[0, 0, 0], end=[0.75, 1.5, 0], color="#32CD32")
         vec1_label = MathTex("\\vec{a}").set_color("#32CD32")
-        vec1_label.next_to(vec1.get_end(), direction=DOWN+RIGHT,buff=0.3)
+        vec1_label.next_to(vec1.get_end(), direction=DOWN + RIGHT, buff=0.3)
 
         # Create the second vector (pink color)
         vec2 = Arrow3D(start=[0, 0, 0], end=[1, 1, 2], color=PINK)
         vec2_label = MathTex("\\vec{b}").set_color(PINK)
-        vec2_label.next_to(vec2.get_end(), direction=UP+LEFT,buff=0.6)
+        vec2_label.next_to(vec2.get_end(), direction=UP + LEFT, buff=0.6)
 
         # Calculate the cross product of the two vectors
         cross_product = np.cross([0.75, 1.5, 0], [1, 1, 2])
@@ -329,3 +332,94 @@ class CrossProductScene(ThreeDScene):
 
         # Add text labels with fixed orientation in 3D space
         self.add_fixed_orientation_mobjects(vec1_label, vec2_label, vec3_label)
+
+
+class VFScene(Scene):
+    def construct(self):
+        tex_init(self)
+        # Define the scale factor
+        scale_factor = 2
+
+        # Define the vector function
+        def vector_func(t):
+            return np.array([scale_factor * np.cos(t), scale_factor * np.sin(t), 0])
+
+        # Define the value tracker for time
+        t_tracker = ValueTracker(0)
+
+        # Define the vector and its position update function
+        vector = Vector(vector_func(t_tracker.get_value())).set_color(GREEN_A)
+        vector.add_updater(
+            lambda m: m.become(Vector(vector_func(t_tracker.get_value())).set_color(GREEN_B).shift((DOWN + LEFT))))
+        txt = MathTex("t")
+
+        # Define the slider
+        slider = NumberLine(x_range=[0, 2 * np.pi], include_numbers=True)
+        dot = Dot()
+        dot.add_updater(
+            lambda m: m.move_to(slider.point_from_proportion(t_tracker.get_value() / (2 * np.pi))).set_color(GREEN_A))
+        ptr = Arrow().rotate(PI / 2).set_color(RED)
+        ptr.add_updater(lambda m: m.next_to(dot, direction=DOWN))
+        txt.add_updater(lambda m: m.next_to(ptr.get_start(), direction=DOWN).set_color(ORANGE))
+
+        # Group slider, dot and pointer
+        slider_group = VGroup(slider, dot, ptr, txt).to_corner(UP + RIGHT, buff=0.3)
+
+        # Create the number plane
+        npl = NumberPlane().scale(2)
+
+        # Define the labels
+        labels = [
+            Tex("1").next_to(npl.c2p(1, 0), DOWN),
+            Tex("-1").next_to(npl.c2p(-1, 0), DOWN),
+            Tex("1").next_to(npl.c2p(0, 1), LEFT, buff=0.17),
+            Tex("-1").next_to(npl.c2p(0, -1), LEFT, buff=0.17)
+        ]
+
+        totparts = 800
+        lines = VGroup(*[Line(
+            vector_func((x - 1) * 2 * np.pi / totparts),
+            vector_func(x * 2 * np.pi / totparts)
+        ).set_color(color_map(x * 2 * np.pi / totparts)) for x in range(1, totparts + 1)])
+        lines.set_opacity(0)
+
+        def update_lines(m):
+            # Calculate the corresponding points on the curve
+            k = integer_interpolate(0, totparts, t_tracker.get_value() / (2 * np.pi))
+            v = k[0]
+            if k[1] > 0.8:
+                v += 1
+            m[:v].set_opacity(1)
+
+        lines.add_updater(update_lines)
+
+        #   bg = [BackgroundRectangle(x,fill_color=BLACK,fill_opacity=0.2,buff=0.1) for x in labels]
+
+        # Add objects to the scene
+        tg = VGroup(npl, vector, lines, *labels)
+        tg.shift((DOWN + LEFT))
+        mt = MathTex(r"r(t) = \vecD{\cos(t)}{\sin(t)}", tex_template=self.stdtex).set_color(PINK).to_corner(UP + LEFT,
+                                                                                                            buff=0.8).shift(
+            RIGHT * 0.35).scale(1.5)
+        mt.add_background_rectangle(BLACK,opacity=0.5,buff=0.25)
+
+        self.add(tg, slider_group, mt)
+        # Animate
+        self.play(t_tracker.animate.set_value(2 * np.pi), run_time=8, rate_func=rate_functions.ease_in_out_cubic)
+
+
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+
+
+def color_map(value):
+    # Convert the input value to a value between 0 and 1
+    normalized_value = value / (2 * np.pi)
+
+    # Get the color from the hsv colormap, which is a rainbow colormap
+    color = plt.cm.hsv(normalized_value)
+
+    # Convert color to HEX form
+    hex_color = mcolors.rgb2hex(color[:3])
+
+    return hex_color

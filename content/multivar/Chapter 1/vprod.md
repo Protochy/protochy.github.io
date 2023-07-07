@@ -186,7 +186,7 @@ $$ \Large \c{orange} (\vec{a} \times \vec{b}) \x \vec{a} = (\vec{a} \times \vec{
 <br>
 {{<prob "hard">}}
 3. Prove that the area of a *simple* polygon is given by
-$$\Large \c{lime} \f{1}{2} \x \sum_{i=0}^{n-1} \\left|\vec{v_i} \times \vec{v_{i+1}}\\right|$$
+$$\Large \c{lime} \f{1}{2} \x \sum_{i=0}^{n-1} \\left|\vec{v}_i \times \vec{v}_{i+1}\\right|$$
 {{</ prob >}}  
 
 
