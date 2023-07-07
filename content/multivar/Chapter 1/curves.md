@@ -44,5 +44,21 @@ Notice how they both draw out the unit circle but at different speeds? That's be
 {{<tip "warn" >}} Do [Problem 4](../vfunc/#problems) of [Vector Functions](../vfunc) first. {{</tip>}}
 
 1. Let $\c{orchid} \vec{r}(t) = \vecD{t}{t^2}$ be a parameterisation of a curve $\c{lime} \mathcal{C} \in \mbb{R}^3$ such that $\c{pink} \vec{r}(0) = (R,-R,R)$, where $\c{pink} R > 0$.  
-Suppose $\c{pink} \vec{r}(t) \neq 0$ and $\c{lime} \vec{r}(t) \x \vec{r'}(t) = 0$ for all points on $\c{lime} \mathcal{C}$. Show that $\c{lime} \mathcal{C}$ lies on the surface of a sphere and determine the centre and radius of the sphere.
+
+    Suppose $\c{pink} \vec{r}(t) \neq 0$ and $\c{lime} \vec{r}(t) \x \vec{r'}(t) = 0$ for all points on $\c{lime} \mathcal{C}$. Show that $\c{lime} \mathcal{C}$ lies on the surface of a sphere and determine the centre and radius of the sphere.
 {{< /prob >}}
+<br>
+{{< prob "hard" >}}
+2. Consider the curve with equation
+$$\Large \c{cyan}y = x^2$$
+Find a parameterisation of this curve using a parameter $\c{pink} \mu$ such that $\c{pink} 0 < \mu < 1$
+<br>
+{{< toggle showText="Hint 1" hideText="Hide hint" >}}
+What function do you know that is monotonically increasing (that just means it's always going up, like Smarmy's stocks) and has a range of $\c{lime} (-\infty,\infty)$?
+{{< /toggle >}}
+{{< toggle showText="Hint 2" hideText="Hide hint" >}}
+The answer to the previous hint is $\c{orange} \tan(x)$. Now, how can you use this to parameterise the curve?
+{{< /toggle >}}
+{{< /prob >}} 
+(maybe i draw an animation for this one too?)
+<br>
