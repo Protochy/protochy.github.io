@@ -1,4 +1,6 @@
 <!-- layouts/shortcodes/box.html -->
+<div style="display: block;">
 <div style="max-width:100% !important; display: inline-block; border: 3px solid {{ .Get 0 | default "white" }}; border-radius: 10px; padding: 5px 16px; text-align: left; background-color: {{ .Get 1 | default "transparent" }}; color: {{ .Get 2 | default "inherit" }}; overflow-x: auto; overflow-y: hidden;">
-  {{ .Inner | markdownify }}
+{{ .Inner | markdownify }}
+</div>
 </div>

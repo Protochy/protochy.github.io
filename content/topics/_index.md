@@ -9,9 +9,9 @@ It's {{< col color="tan">}} Micky D{{< /col >}} here and $\Large \color{yellow} 
 
 <!-- That content is better than dummy lorem ipsum 2) That content serves a good real-world demo for this theme 3) Publish more structured docs for each theme which are better than long blocky READMEs -->
 
-{{< button "./compose/" "Random problems" "mb-1" >}}
+{{< button "../blog/" "Random problems" "mb-r" >}}
 
-{{< button "./compose/" "Analysis" "mb-1" >}}
+{{< button "./compose/" "Analysis" "mb-p" >}}
 
 {{< button "./clarity/" "Linear Algebra" >}}
 

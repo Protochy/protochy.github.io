@@ -1,5 +1,6 @@
 {{- $link := .Get 0 -}}
 {{- $label := .Get 1 -}}
 {{- $modifier := .Get 2 -}}
+<span style="display:inline-block">
 <a href="{{ $link }}" class="button{{ with $modifier }} {{ . }}{{ end }}">{{- $label | markdownify -}}</a>
-
+</span>

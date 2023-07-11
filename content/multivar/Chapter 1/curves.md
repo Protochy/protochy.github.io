@@ -43,7 +43,7 @@ Notice how they both draw out the unit circle but at different speeds? That's be
 {{< prob "med" >}}
 {{<tip "warn" >}} Do [Problem 4](../vfunc/#problems) of [Vector Functions](../vfunc) first. {{</tip>}}
 
-1. Let $\c{orchid} \vec{r}(t) = \vecD{t}{t^2}$ be a parameterisation of a curve $\c{lime} \mathcal{C} \in \mbb{R}^3$ such that $\c{pink} \vec{r}(0) = (R,-R,R)$, where $\c{pink} R > 0$.  
+1. Let $\c{orchid} \vec{r}(t)$ be a parameterisation of a curve $\c{lime} \mathcal{C} \in \mbb{R}^3$ such that $\c{pink} \vec{r}(0) = (R,-R,R)$, where $\c{pink} R > 0$.  
 
     Suppose $\c{pink} \vec{r}(t) \neq 0$ and $\c{lime} \vec{r}(t) \x \vec{r'}(t) = 0$ for all points on $\c{lime} \mathcal{C}$. Show that $\c{lime} \mathcal{C}$ lies on the surface of a sphere and determine the centre and radius of the sphere.
 {{< /prob >}}

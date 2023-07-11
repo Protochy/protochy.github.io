@@ -1,11 +1,7 @@
 {{ $uniqueID := printf "toggle-%v" now.UnixNano }}
 <div class="toggle-section" style="margin: 10px 0;">
-    <a href="#" id="{{ $uniqueID }}-button" class="button mb-proof" onclick="toggleContent(event, '{{ $uniqueID }}', '{{ .Get `showText` }}', '{{ .Get `hideText` }}')">
-        {{ .Get "showText" }}
-    </a>
-    <div id="{{ $uniqueID }}" class="toggle-content" style="display: none; padding: 10px; margin-top: 10px;">
-        {{ markdownify .Inner }}
-    </div>
+<a href="#" id="{{ $uniqueID }}-button" class="button mb-proof" onclick="toggleContent(event, '{{ $uniqueID }}', '{{ .Get `showText` }}', '{{ .Get `hideText` }}')">{{ .Get "showText" }}</a>
+<div id="{{ $uniqueID }}" class="toggle-content" style="display: none; padding: 10px; margin-top: 10px;">{{ markdownify .Inner }}</div>
 </div>
 <script>
     function toggleContent(event, id, showText, hideText) {

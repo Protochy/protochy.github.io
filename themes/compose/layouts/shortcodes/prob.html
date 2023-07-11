@@ -1,15 +1,22 @@
-<!-- layouts/shortcodes/box.html -->
+<!-- layouts/shortcodes/prob.html -->
 <div style="display: block;">
-    <div style="display: inline-block; max-width:100% !important; border: 3px solid 
-      {{ if eq (.Get 0) "easy" }}lime
-      {{ else if eq (.Get 0) "med" }}yellow
-      {{ else if eq (.Get 0) "hard" }}red
-      {{ else if eq (.Get 0) "imp" }}purple
-      {{ else }}white{{ end }};
-      border-radius: 10px; padding: 5px 16px; text-align: left; background-color: 
-      {{ .Get 1 | default "transparent" }}; color: 
-      {{ .Get 2 | default "inherit" }}; overflow-x: auto; overflow-y: hidden;">
-      {{ .Inner | markdownify }}
-    </div>
-  </div>
+    <div style="position: relative; display: inline-block; max-width:100% !important; border: 3px solid 
+  {{ if eq (.Get 0) "easy" }}lime
+  {{ else if eq (.Get 0) "med" }}yellow
+  {{ else if eq (.Get 0) "hard" }}red
+  {{ else if eq (.Get 0) "imp" }}purple
+  {{ else }}white{{ end }};
+  border-radius: 10px; padding: 5px 16px; text-align: left; background-color: 
+  {{ .Get 1 | default "transparent" }}; color: 
+  {{ .Get 2 | default "inherit" }}; overflow-x: auto; overflow-y: hidden;">
+{{ if eq (.Get 0) "easy" }} 
+<img class="diffshape" src="/images/tri.svg" style="position: absolute; top: -5px; right: 5px;">
+{{ else if eq (.Get 0) "med" }}
+<img class="diffshape" src="/images/sq.svg" style="position: absolute; top: -5px; right: 12px;">
+{{ else if eq (.Get 0) "hard" }}
+<img class="diffshape" src="/images/pent.svg" style="position: absolute; top: -7px; right: 10px;">
+{{ else if eq (.Get 0) "imp" }}
+<!-- Add appropriate shape for "imp" if needed -->
+{{ end }}<div style="padding: 5px 20px 5px 5px;">{{ .Inner | markdownify }}</div>
+</div></div>
   

@@ -30,6 +30,8 @@ $$\c{lime} \Large \vec{a} \x \vec{b} = \c{pink} \left|\vec{a}\right| \x \left|\v
 
 {{< toggle showText="Show proof" hideText="Hide proof" >}}
 hi reeshav, figure it out yourself (kidding itll come soon)
+
+lol
 {{< /toggle >}}
 {{</ box >}}
 {{</ centr >}}
