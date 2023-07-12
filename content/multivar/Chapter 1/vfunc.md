@@ -35,7 +35,7 @@ It's **not** returning $\cos$ and $\sin$ seperately, it's returning them *togeth
 {{< divide >}}
 ok, now let's investigate what happens as we range $\c{pink} t$ from $\c{pink} 0$ to $\c{pink} 2\pi$
 
-<video width=100% controls> <source src="/anim/pathCircle1.mp4" type="video/mp4"> Your browser does not support the video tag.</video> ADD FUCKING ARROW TO R LOL (del this line later)
+<video width=100% controls> <source src="/anim/mvchap1/CircleVF.mp4" type="video/mp4"> Your browser does not support the video tag.</video> 
 
 nice, a circle! anyway, we associate each t value with a corresponding *2D vector*, which is why the whole thing still works. 
 {{< tip >}}
