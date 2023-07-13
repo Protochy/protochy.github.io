@@ -181,13 +181,18 @@ The cross product can only be defined for 3 and 7 dimensional vectors {{< kekwai
 $$ \Large \c{orange} (\vec{a} \times \vec{b}) \x \vec{a} = (\vec{a} \times \vec{b}) \x \vec{b} = 0$$
 {{</ prob >}}
 <br>
+{{<prob "easy">}}
+2. Prove that 
+$$ \Large \c{cyan} \vec{a} \x \vec{a} = |\vec{a}|^2$$
+{{</ prob >}}
+<br>
 {{<prob "med">}}
-2. Given three vectors $\Large \c{lime} \vec{a},\vec{b},\vec{c} \in \mbb{R}^3$, show that $$\Large \c{orange} (\vec{a} \times \vec{b}) \c{lime} \x \vec{c} = \c{cyan} \det\left(\begin{bmatrix} a_1 & b_1 & c_1 \\\ a_2 & b_2 & c_2 \\\ a_3 & b_3 & c_3 \end{bmatrix}\right)$$
+3. Given three vectors $\Large \c{lime} \vec{a},\vec{b},\vec{c} \in \mbb{R}^3$, show that $$\Large \c{orange} (\vec{a} \times \vec{b}) \c{lime} \x \vec{c} = \c{cyan} \det\left(\begin{bmatrix} a_1 & b_1 & c_1 \\\ a_2 & b_2 & c_2 \\\ a_3 & b_3 & c_3 \end{bmatrix}\right)$$
 {{< col "cyan">}} or in other words, the {{< col "red" >}} volume {{</ col >}} of the *parallelepiped* spanned by the three vectors. {{</ col >}}
 {{</ prob >}}
 <br>
 {{<prob "hard">}}
-3. Prove that the area of a *simple* polygon is given by
+4. Prove that the area of a *simple* polygon is given by
 $$ \Large \\c{lime} \\f{1}{2} \\x \left(\left\|\vec{v}\_n \times \\vec{v}\_{1}\right| +  \\sum_{i=1}^{n-1} \left|\vec{v}_i \times \\vec{v}\_{i+1}\right| \right)$$
 <img src="/anim/mvchap1/shoelace.png" alt="Shoelace Example" width="1280" height="720"> 
 An example for $\c{orange} n = 5$

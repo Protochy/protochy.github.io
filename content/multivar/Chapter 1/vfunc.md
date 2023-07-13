@@ -96,7 +96,7 @@ Prove that $$\Large \c{pink} \int_a^b \vec{r}(t) \\: \tu{d}t = \begin{bmatrix} \
 <br>
 {{< prob "med" >}}
 3. Prove that
-$$\Large \c{magenta} \deriv{x} (\vec{a} \x \vec{b}) = \f{\tu{d} \vec{a}}{\tu{d}x} \vec{b} + \f{\tu{d} \vec{b}}{\tu{d}x} \vec{a}$$
+$$\Large \c{magenta} \deriv{t} \left(\vec{a}(t) \x \vec{b}(t)\right) = \f{\tu{d} \vec{a}}{\tu{d}t} \vec{b} + \f{\tu{d} \vec{b}}{\tu{d}t} \vec{a}$$
 {{< /prob >}}
 <br>
 {{< prob "hard" >}}
