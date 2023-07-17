@@ -101,9 +101,16 @@ and note that we assumed $\c{magenta} \vec{T'}(t) \neq 0$ in the first place, so
 {{</prob>}}
 but is this really satisfying? it's still pretty unintuitive to me, so let's actually look under the hood and see what's going on. 
 
-ADD ANIMATION FOR UNIT NORMAL
+<video width=100% controls> <source src="/anim/mvchap1/NormalVecPerpendicular.mp4" type="video/mp4">
+(maybe remove music, use the 1.5 mb file lol)
 
+The vector $\c{cyan} h \x \vec{N}(t)$ connecting $\c{orange} \vec{T}(t)$ and $\c{lime} \vec{T}(t+h)$ is quite literally $$\Large \c{cyan} h \x \vec{N}(t) = \c{lime} \vec{T}(t+h) - \c{orange} \vec{T}(t)$$ the change in the unit tangent vector as $\c{lime} h$ changes. (Rearrange it for $\c{cyan} \vec{N}(t)$ and out pops the derivative formula).
 
+This vector is usually called the rejection, and as $\c{orange} h \to 0$, it becomes perpendicular to the unit tangent vector. 
+{{< divide >}}
+
+### Problems
+TODO, lotta computational shit... yuck
 
 
 
