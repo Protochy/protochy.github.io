@@ -1,6 +1,8 @@
+{{ $showText := .Get "showText" | default (.Get 0) }}
+{{ $hideText := .Get "hideText" | default (.Get 1) }}
 {{ $uniqueID := printf "toggle-%v" now.UnixNano }}
 <div class="toggle-section" style="margin: 10px 0;">
-<a href="#" id="{{ $uniqueID }}-button" class="button mb-proof" onclick="toggleContent(event, '{{ $uniqueID }}', '{{ .Get `showText` }}', '{{ .Get `hideText` }}')">{{ .Get "showText" }}</a>
+<a href="#" id="{{ $uniqueID }}-button" class="button mb-proof" onclick="toggleContent(event, '{{ $uniqueID }}', '{{ $showText }}', '{{ $hideText }}')">{{ $showText }}</a>
 <div id="{{ $uniqueID }}" class="toggle-content" style="display: none; padding: 10px; margin-top: 10px;">{{ markdownify .Inner }}</div>
 </div>
 <script>

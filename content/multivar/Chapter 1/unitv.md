@@ -103,6 +103,12 @@ but is this really satisfying? it's still pretty unintuitive to me, so let's act
 
 <video width=100% controls> <source src="/anim/mvchap1/NormalVecPerpendicular.mp4" type="video/mp4">
 (maybe remove music, use the 1.5 mb file lol)
+c
+{{<tip "warn">}}
+In the animation, I'm representing $\c{cyan} \vec{N}(t)$ as $\c{orange} \vec{T'}(t)$, not the **normalised** (unit vector) version of it. This doesn't affect the validity of the proof, but it does make it easier to understand.  
+
+In practice, you would take the normalised version of what I put there for $\c{cyan} \vec{N}(t)$
+{{</tip>}}
 
 The vector $\c{cyan} h \x \vec{N}(t)$ connecting $\c{orange} \vec{T}(t)$ and $\c{lime} \vec{T}(t+h)$ is quite literally $$\Large \c{cyan} h \x \vec{N}(t) = \c{lime} \vec{T}(t+h) - \c{orange} \vec{T}(t)$$ the change in the unit tangent vector as $\c{lime} h$ changes. (Rearrange it for $\c{cyan} \vec{N}(t)$ and out pops the derivative formula).
 
