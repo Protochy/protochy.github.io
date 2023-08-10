@@ -1,6 +1,6 @@
 ---
 title: "Chapter 2: Paths"
-weight: 10
+weight: 1009
 description: >
   Everything paths!
 ---

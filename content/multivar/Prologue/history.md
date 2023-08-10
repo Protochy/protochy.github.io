@@ -1,6 +1,6 @@
 ---
 title: "History"
-weight: 3
+weight: 1002
 description: >
   Some rich history!
 ---

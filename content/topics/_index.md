@@ -1,6 +1,6 @@
 ---
 title: "Wilkommen, Fucker"
-weight: 1
+weight: -1
 ---
 
 Hiya, ya little {{< col color="magenta">}} fucks{{< /col >}}

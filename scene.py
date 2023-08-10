@@ -3,10 +3,14 @@ import random
 import numpy as np
 from manim import *
 
+from util import pairwise
+from math import sqrt
+
 COL = "#2a2c40"
 config.background_color = COL
 
 textemp = r"""\usepackage{xcolor}
+    \usepackage{bigints}
     \renewcommand{\c}[1]{\color{#1}}
     \def\mbb#1{\mathbb{#1}}
     \def\mfk#1{\mathfrak{#1}}
@@ -693,12 +697,12 @@ class NormalVector1(MovingCameraScene):
         return v
 
     def vector_func(self, t):
-        return np.array([self.scale_factor * 1.5 * t, self.scale_factor * (3 - 2*np.arctan(t) - np.cos(t)), 0])
+        return np.array([self.scale_factor * 1.5 * t, self.scale_factor * (3 - 2 * np.arctan(t) - np.cos(t)), 0])
 
     def vector_funcd(self, t):
-        return np.array([self.scale_factor * 1.5, self.scale_factor * (-2/(t*t + 1) + np.sin(t)), 0])
+        return np.array([self.scale_factor * 1.5, self.scale_factor * (-2 / (t * t + 1) + np.sin(t)), 0])
 
-    def fixed_zoomed_mob(self, mob, refFrame, DIRE=DOWN, currSCF = 1):
+    def fixed_zoomed_mob(self, mob, refFrame, DIRE=DOWN, currSCF=1):
         frame = self.camera.frame
 
         mob_center = mob.get_center()
@@ -707,29 +711,30 @@ class NormalVector1(MovingCameraScene):
         mob_prop = mob_mod / (START_FRAME_WIDTH * currSCF)
         mob_width = mob.width / (START_FRAME_WIDTH * currSCF)
 
-        def updater(_mob,referenceFrame, DIRE):
+        def updater(_mob, referenceFrame, DIRE):
             fw = frame.width
             new_mod = mob_prop * fw
             new_width = mob_width * fw
             _mob.width = new_width
-          #  print(frame.width,START_FRAME_WIDTH,0.15 * (frame.width/START_FRAME_WIDTH)**2)
-            mob.next_to(referenceFrame, direction=DIRE, buff=0.15*(frame.width/(START_FRAME_WIDTH*currSCF)))
-         #   _mob.move_to(
-          #      frame.get_center() + mob_uv * new_mod
-          #  )
+            #  print(frame.width,START_FRAME_WIDTH,0.15 * (frame.width/START_FRAME_WIDTH)**2)
+            mob.next_to(referenceFrame, direction=DIRE, buff=0.15 * (frame.width / (START_FRAME_WIDTH * currSCF)))
 
-        mob.add_updater(lambda t: updater(t,refFrame, DIRE))
+        #   _mob.move_to(
+        #      frame.get_center() + mob_uv * new_mod
+        #  )
+
+        mob.add_updater(lambda t: updater(t, refFrame, DIRE))
 
     def construct(self):
-
-        parafunc = ParametricFunction(lambda t: self.vector_func(t), t_range=[0, np.pi]).shift(self.SHIFT).set_color(RED)
+        parafunc = ParametricFunction(lambda t: self.vector_func(t), t_range=[0, np.pi]).shift(self.SHIFT).set_color(
+            RED)
         self.add(parafunc)
 
         c = 0.35
+
         # Create a ValueTracker and get the path function of the curve
 
         # Move the camera to the start of the path
-
 
         def color_map(value):
             # Convert the input value to a value between 0 and 1
@@ -749,148 +754,403 @@ class NormalVector1(MovingCameraScene):
         dummy.shift(self.SHIFT).set_color(color_map(1))
         vector.become(dummy)
 
-
-        rprime = MathTex(r"\vec{T}(t)").next_to(vector, direction=DOWN+LEFT, buff=0.15).set_color(vector.get_color())
-        self.fixed_zoomed_mob(rprime,vector.get_end(),DOWN+LEFT)
-        tanV = VGroup(vector,rprime)
+        rprime = MathTex(r"\vec{T}(t)").next_to(vector, direction=DOWN + LEFT, buff=0.15).set_color(vector.get_color())
+        self.fixed_zoomed_mob(rprime, vector.get_end(), DOWN + LEFT)
+        tanV = VGroup(vector, rprime)
         self.add_foreground_mobject(tanV)
 
         self.play(self.camera.frame.animate.scale(0.4).move_to(self.vector_func(c) + self.SHIFT))
 
-
         h = ValueTracker(0.5)
-        vector2 = Vector(self.vector_funcd(c+h.get_value()))
+        vector2 = Vector(self.vector_funcd(c + h.get_value()))
 
         dummy = Vector(vector2.get_unit_vector())
-        dummy.shift(self.vector_func(c+h.get_value()) - (dummy.get_start() + dummy.get_end()) / 2)
-        dummy.shift(self.SHIFT).set_color(color_map(1+3*h.get_value()))
+        dummy.shift(self.vector_func(c + h.get_value()) - (dummy.get_start() + dummy.get_end()) / 2)
+        dummy.shift(self.SHIFT).set_color(color_map(1 + 3 * h.get_value()))
         vector2.become(dummy).set_opacity(0.3)
 
-
-
         def vectorUpdater(v):
-            dv = self.vector_funcd(c+h.get_value())
-            dummy = Vector(dv/np.linalg.norm(dv))
-            dummy.shift(self.vector_func(c+h.get_value()) - (dummy.get_start() + dummy.get_end()) / 2)
-            dummy.shift(self.SHIFT).set_color(color_map(1+3*h.get_value()))
+            dv = self.vector_funcd(c + h.get_value())
+            dummy = Vector(dv / np.linalg.norm(dv))
+            dummy.shift(self.vector_func(c + h.get_value()) - (dummy.get_start() + dummy.get_end()) / 2)
+            dummy.shift(self.SHIFT).set_color(color_map(1 + 3 * h.get_value()))
             v.become(dummy).set_opacity(0.3)
 
         vector2.add_updater(vectorUpdater)
-        rprime2 = MathTex(r"\vec{T}(t+{{h}})").scale(0.4).next_to(vector2.get_end(), direction=UP + RIGHT, buff=0.05).set_color(
+        rprime2 = MathTex(r"\vec{T}(t+{{h}})").scale(0.4).next_to(vector2.get_end(), direction=UP + RIGHT,
+                                                                  buff=0.05).set_color(
             vector2.get_color())
         rprime2[1].set_color(color_map(1 + 3 * h.get_value()))  # maybe set h to diff color
 
         v3 = vector2.copy()
         v3.remove_updater(vectorUpdater)
 
-
-
         vg2 = VGroup(vector2, rprime2)
 
         self.play(Write(vg2))
 
-        self.fixed_zoomed_mob(rprime2,v3.get_end(),DIRE=UP+LEFT,currSCF= 0.4)
+        self.fixed_zoomed_mob(rprime2, v3.get_end(), DIRE=UP + LEFT, currSCF=0.4)
 
         self.wait()
 
         def rprime2Upd2(v: MathTex):
-            v.set_color(color_map(1+3*h.get_value()))
-            v.next_to(v3.get_end(),buff=0.05,direction=UP+RIGHT)
+            v.set_color(color_map(1 + 3 * h.get_value()))
+            v.next_to(v3.get_end(), buff=0.05, direction=UP + RIGHT)
             return v
 
         rprime2.add_updater(rprime2Upd2)
 
-
         def v3Update(v: Vector):
-            v.become(vector2.copy().remove_updater(vectorUpdater).set_color(vector2.get_color()).move_to(vector.get_start() + (-vector2.get_start() + vector2.get_end()) / 2)).set_opacity(1)
+            v.become(vector2.copy().remove_updater(vectorUpdater).set_color(vector2.get_color()).move_to(
+                vector.get_start() + (-vector2.get_start() + vector2.get_end()) / 2)).set_opacity(1)
             return v
 
         self.play(v3.animate.move_to(vector.get_start() + (-v3.get_start() + v3.get_end()) / 2).set_opacity(1))
         v3.add_updater(v3Update)
 
-
         self.wait()
 
         self.play(self.camera.frame.animate.scale(0.3).move_to(vector.get_end()),
-            h.animate.set_value(0.3), run_time=5)
+                  h.animate.set_value(0.3), run_time=5)
 
-        rejection = Vector(self.vector_funcd(c + h.get_value())/np.linalg.norm(self.vector_funcd(c + h.get_value())) - self.vector_funcd(c)/np.linalg.norm(self.vector_funcd(c))).move_to(vector.get_end())
-       # print(h.get_value(),rejection.get_end() - rejection.get_start())
+        rejection = Vector(self.vector_funcd(c + h.get_value()) / np.linalg.norm(
+            self.vector_funcd(c + h.get_value())) - self.vector_funcd(c) / np.linalg.norm(
+            self.vector_funcd(c))).move_to(vector.get_end())
+        # print(h.get_value(),rejection.get_end() - rejection.get_start())
         rejection = self.drawVector(rejection)
         rejection.set_color(BLUE)
 
-        r3 = MathTex(r"h \x \vec{N}(t)").set_color(BLUE).scale(0.4*0.6).next_to(rejection, buff=0.06, direction=RIGHT).shift(UP*0.03)
-        self.play(DrawBorderThenFill(rejection),DrawBorderThenFill(r3))
+        r3 = MathTex(r"h \x \vec{N}(t)").set_color(BLUE).scale(0.4 * 0.6).next_to(rejection, buff=0.06,
+                                                                                  direction=RIGHT).shift(UP * 0.03)
+        self.play(DrawBorderThenFill(rejection), DrawBorderThenFill(r3))
 
         right_angle = RightAngle(line1=vector, line2=rejection,
-                                 length=0.055, color=PINK, quadrant=(-1,1)).set_stroke(width=1)
+                                 length=0.055, color=PINK, quadrant=(-1, 1)).set_stroke(width=1)
         self.add_foreground_mobject(right_angle)
         self.play(Create(right_angle))
         self.wait()
 
         # addupdtrs
-        r3.add_updater(lambda t: t.next_to(rejection, buff=0.06, direction=RIGHT).shift(UP*0.03))
+        r3.add_updater(lambda t: t.next_to(rejection, buff=0.06, direction=RIGHT).shift(UP * 0.03))
         right_angle.add_updater(lambda t: t.become(RightAngle(line1=vector, line2=rejection,
-                                 length=0.055, color=PINK, quadrant=(-1,1)).set_stroke(width=1)))
-        self.play(self.camera.frame.animate.move_to(self.vector_func(c)+self.SHIFT),rejection.animate.move_to(self.vector_func(c)+self.SHIFT + (rejection.get_end()-rejection.get_start())/2))
+                                                              length=0.055, color=PINK, quadrant=(-1, 1)).set_stroke(
+            width=1)))
+        self.play(self.camera.frame.animate.move_to(self.vector_func(c) + self.SHIFT), rejection.animate.move_to(
+            self.vector_func(c) + self.SHIFT + (rejection.get_end() - rejection.get_start()) / 2))
         self.wait()
 
-        newRejec = self.drawVector(Vector(1/h.get_value() * (self.vector_funcd(c + h.get_value())/np.linalg.norm(self.vector_funcd(c + h.get_value())) - self.vector_funcd(c)/np.linalg.norm(self.vector_funcd(c)))).move_to(self.vector_func(c)+self.SHIFT)).set_color(BLUE)
+        newRejec = self.drawVector(Vector(1 / h.get_value() * (self.vector_funcd(c + h.get_value()) / np.linalg.norm(
+            self.vector_funcd(c + h.get_value())) - self.vector_funcd(c) / np.linalg.norm(
+            self.vector_funcd(c)))).move_to(self.vector_func(c) + self.SHIFT)).set_color(BLUE)
         r3.remove_updater(lambda t: t.next_to(rejection, buff=0.06, direction=RIGHT))
-        newR3 = MathTex(r"\vec{N}(t)").set_color(BLUE).scale(0.4*1.2).next_to(newRejec,buff=0.1,direction=RIGHT)
+        newR3 = MathTex(r"\vec{N}(t)").set_color(BLUE).scale(0.4 * 1.2).next_to(newRejec, buff=0.1, direction=RIGHT)
 
         newRangle = RightAngle(line1=vector, line2=newRejec,
-                                 length=0.13, color=PINK, quadrant=(-1,1)).set_stroke(width=1.7)
+                               length=0.13, color=PINK, quadrant=(-1, 1)).set_stroke(width=1.7)
 
-        newRejec.add_updater(lambda t: t.become(self.drawVector(Vector(1/h.get_value() * (self.vector_funcd(c + h.get_value())/np.linalg.norm(self.vector_funcd(c + h.get_value())) - self.vector_funcd(c)/np.linalg.norm(self.vector_funcd(c)))).move_to(self.vector_func(c)+self.SHIFT)).set_color(BLUE)))
+        newRejec.add_updater(lambda t: t.become(self.drawVector(Vector(1 / h.get_value() * (
+                    self.vector_funcd(c + h.get_value()) / np.linalg.norm(
+                self.vector_funcd(c + h.get_value())) - self.vector_funcd(c) / np.linalg.norm(
+                self.vector_funcd(c)))).move_to(self.vector_func(c) + self.SHIFT)).set_color(BLUE)))
         newRangle.add_updater(lambda t: t.become(RightAngle(line1=vector, line2=newRejec,
-                                 length=0.13, color=PINK, quadrant=(-1,1)).set_stroke(width=1.7)))
-        self.play(self.camera.frame.animate.scale(2.5),rejection.animate.scale(1/h.get_value()),Transform(rejection,newRejec),Transform(right_angle,newRangle),TransformMatchingTex(r3,newR3),run_time=2.5)
-        self.remove(right_angle,rejection)
-        self.add(newRejec,newRangle)
+                                                            length=0.13, color=PINK, quadrant=(-1, 1)).set_stroke(
+            width=1.7)))
+        self.play(self.camera.frame.animate.scale(2.5), rejection.animate.scale(1 / h.get_value()),
+                  Transform(rejection, newRejec), Transform(right_angle, newRangle), TransformMatchingTex(r3, newR3),
+                  run_time=2.5)
+        self.remove(right_angle, rejection)
+        self.add(newRejec, newRangle)
         self.wait()
-        self.play(Write(MathTex(r"h \to 0").set_color(ORANGE).scale(0.5).shift(0.85*DOWN+3.2*LEFT)))
-        self.play(h.animate.set_value(0.0001),run_time=5)
+        self.play(Write(MathTex(r"h \to 0").set_color(ORANGE).scale(0.5).shift(0.85 * DOWN + 3.2 * LEFT)))
+        self.play(h.animate.set_value(0.0001), run_time=5)
+
+
 from manim import *
 
 START_FRAME_WIDTH = config.frame_width
 START_FRAME_HEIGHT = config.frame_height
 ASPECT_RATIO = START_FRAME_WIDTH / START_FRAME_HEIGHT
 
+
 class Testor(MovingCameraScene):
-  def construct(self):
-    frame = self.camera.frame
-    txt_1 = MathTex("x^2").move_to(UP*3+RIGHT*2)
-    txt_2 = Vector([1,1,0]).move_to(DOWN*3+LEFT*4)
-    self.add(NumberPlane())
-    self.add(txt_1)
+    def construct(self):
+        frame = self.camera.frame
+        txt_1 = MathTex("x^2").move_to(UP * 3 + RIGHT * 2)
+        txt_2 = Vector([1, 1, 0]).move_to(DOWN * 3 + LEFT * 4)
+        self.add(NumberPlane())
+        self.add(txt_1)
 
-    self.fixed_zoomed_mob(txt_1)
+        self.fixed_zoomed_mob(txt_1)
 
-    self.add(txt_1, txt_2)
-    self.play(
-      frame.animate.scale(0.4),
-      run_time=4
-    )
-    self.wait()
+        self.add(txt_1, txt_2)
+        self.play(
+            frame.animate.scale(0.4),
+            run_time=4
+        )
+        self.wait()
 
-  def fixed_zoomed_mob(self, mob):
-    frame = self.camera.frame
+    def fixed_zoomed_mob(self, mob):
+        frame = self.camera.frame
 
-    mob_center = mob.get_center()
-    mob_uv  = normalize(mob_center)
-    mob_mod = np.linalg.norm(mob_center)
-    mob_prop = mob_mod / START_FRAME_WIDTH
-    mob_width = mob.width / START_FRAME_WIDTH
+        mob_center = mob.get_center()
+        mob_uv = normalize(mob_center)
+        mob_mod = np.linalg.norm(mob_center)
+        mob_prop = mob_mod / START_FRAME_WIDTH
+        mob_width = mob.width / START_FRAME_WIDTH
 
-    def updater(_mob):
-      fw = frame.width
-      new_mod = mob_prop * fw
-      new_width = mob_width * fw
-      _mob.width = new_width
-      _mob.move_to(
-        frame.get_center() + mob_uv * new_mod
-      )
+        def updater(_mob):
+            fw = frame.width
+            new_mod = mob_prop * fw
+            new_width = mob_width * fw
+            _mob.width = new_width
+            _mob.move_to(
+                frame.get_center() + mob_uv * new_mod
+            )
 
-    mob.add_updater(updater)
+        mob.add_updater(updater)
+
+import re
+class ArcLengthFormula(Scene):
+    scale_factor = 2
+    SHIFT = 4.7 * LEFT + 0.65 * DOWN
+
+    eqs = [
+    ]
+
+    #  (MathTex(r"\sum_{i=1}^n", r"\sqrt{", r"\left(r_x(t_i + \Delta t) - r_x(t_i)\right)^2", "+",
+    #                       r"\left(r_y(t_i + \Delta t) - r_y(t_i)\right)^2", "}"),[
+    #             [0, 1, 2, 3, 4, 5],
+    #             #  | |      | |  |   |  |
+    #             [0, 1, 2, 3, 4, 5],
+    #
+    #         ]),
+    eq0 = None
+    ntx = 0
+    def texTransform(self,ind):
+        #MathTex(r"\sum_{i=1}^n", r"\sqrt{", r"\left(r_x(t_{i+1}) - r_x(t_i)\right)^2", "+",
+                  #    r"\left(r_y(t_{i+1}) - r_y(t_i)\right)^2}", "}")
+        ti = self.eqs[ind][1]
+        eq1 = self.eqs[ind][0]
+      #  eq1.align_to(self.eq0, UR)
+
+        def getTexTransform(transform_indices):
+                return [
+                    Create(eq1[j]) if i is None else
+                    ReplacementTransform(self.eq0[i], eq1[j]) if (type(i) is not str and j is not None) else
+                    FadeOut(self.eq0[int(re.search(r'\d+', str(i)).group())]) if (str(i)[-1] == "f" or j is None) else
+                    ReplacementTransform(self.eq0[int(i[:-1])].copy(), eq1[j], path_arc=90 * DEGREES)
+                    for i, j in zip(*transform_indices)
+                ]
+
+        v = getTexTransform(ti)
+        self.eq0 = eq1
+        return v
+
+
+
+    def vector_func(self, t):
+        return np.array(
+            [self.scale_factor * 1.5 * t, self.scale_factor * (2 - 2 * np.arctan(t) - np.cos(t * t - 0.5)), 0])
+
+    def vector_funcd(self, t):
+        return NotImplementedError  # np.array([self.scale_factor * 1.5, self.scale_factor * (-2/(t*t + 1) + np.sin(t)), 0])
+
+    def construct(self):
+        parafunc = ParametricFunction(lambda t: self.vector_func(t), t_range=[0, np.pi]).shift(self.SHIFT).set_color(
+            RED)
+        self.add(parafunc)
+        self.eq0 = MathTex(r"\sum_{i=1}^n", r"\left|", r"\vec{r}(t_{i+1})", "-", r"\vec{r}(t_{i})", r"\right|").scale(
+            1.3).set_color(GREEN).next_to(parafunc, direction=UP)
+        self.add(self.eq0)
+
+        def color_map(value):
+            # Convert the input value to a value between 0 and 1
+            normalized_value = value / (np.pi)
+
+            # Get the color from the hsv colormap, which is a rainbow colormap
+            color = plt.cm.hsv(normalized_value)
+
+            # Convert color to HEX form
+            hex_color = mcolors.rgb2hex(color[:3])
+
+            return hex_color
+
+        def create_lines(n):
+            lines = VGroup()
+            for t1, t2 in pairwise(np.linspace(0, np.pi, n, endpoint=True)):
+                lines.add(Line(self.vector_func(t1), self.vector_func(t2)).shift(self.SHIFT).set_color(
+                    color_map(t1))).set_stroke(width=5)
+
+            return lines
+
+        lns = create_lines(3)
+        self.n_var = MathTex("n","=", 2).to_edge(DOWN, buff=0.4).to_edge(RIGHT)
+        self.n_var[1].set_color(ORANGE)
+        self.play(Write(lns), Write(self.n_var))
+        self.wait(2)
+
+        self.eqs.append((MathTex(
+            r"\sum_{i=1}^n", r"\sqrt{", r"\left(r_x(t_{i+1})", "-", r"r_x(t_i)\right)^2", "+", r"\left(r_y(t_{i+1})" ,"-", r"r_y(t_i)\right)^2","}").set_color(
+            GREEN).next_to(parafunc, direction=UP),
+            [[0,1,2,"2c","2c",3, 4, "4c","4c",5],
+            #  | |      | |  |   |  |
+            [0,1,2, 3,   4,  5, 6, 7,    8,  9],
+
+        ]))
+        self.eqs[self.ntx][0][1:9].set_color(ORANGE)
+
+
+        self.play(
+            LaggedStart(*self.texTransform(0), run_time=3.5))
+
+        self.wait(0.5)
+
+        def transform_lines(n, do = False, run_time=3.5):
+            lns2 = create_lines(n)
+            if n < 100:
+                n_var1 = MathTex("n", "=", n - 1).to_edge(DOWN, buff=0.4).to_edge(RIGHT)
+            else:
+                n_var1 = MathTex(r"n" ,r"\to", r"\infty").to_edge(DOWN, buff=0.4).to_edge(RIGHT)
+            random_color = color.random_bright_color()
+            n_var1[1].set_color(random_color)
+
+            self.wait()
+            if do:
+                self.play(
+                AnimationGroup(Transform(lns, lns2), *[ReplacementTransform(self.n_var[x], n_var1[x]) for x in range(3)], *self.texTransform(self.ntx), run_time=run_time))
+            else:
+                self.play(AnimationGroup(Transform(lns, lns2), *[ReplacementTransform(self.n_var[x], n_var1[x]) for x in range(3)], run_time=run_time))
+
+            self.remove(lns)
+            self.add(lns2)
+            self.n_var = n_var1
+            return lns2
+
+        temp = MathTex(
+            # 0                1                   2                   3           4              5          6                      7        8                  9
+            r"\sum_{i=1}^n", r"\sqrt{", r"\left(r_x(t_i + \Delta t)", "-", r"r_x(t_i)\right)^2", "+", r"\left(r_y(t_i + \Delta t)", "-", r"r_y(t_i)\right)^2", "}").set_color(
+            GREEN).next_to(parafunc, direction=UP)
+        temp[1:9].set_color(ORANGE)
+        self.eqs.append((temp,[[x for x in range(10)],[x for x in range(10)]]))
+        self.ntx += 1
+        lns = transform_lines(7,True)
+
+        temp = MathTex(
+            #     0              1         2                    3                  4          5    6      7               8                          9       10  11
+            r"\sum_{i=1}^n", r"\sqrt{",r"\left(", r"\Delta t \cdot r'_x(t^*_i)", r"\right)","^2", "+", r"\left(", r"\Delta t \cdot r'_y(t^*_i)", r"\right)","^2","}").set_color(
+            GREEN).next_to(parafunc, direction=UP)
+        temp[1:-1].set_color(BLUE)
+        self.eqs.append((temp, [
+            [0,1,2,None, None, None, "3f","4f",5,6, None, None, None, "7f","8f",9],
+            [0,1,3,  2,    4, 5, None,None,6,8, 7, 9, 10, None,None,5]
+        ]))
+        self.ntx += 1
+        lns = transform_lines(14,True)
+
+        MVT = Text("(MVT)").scale(1.5).next_to(temp)
+        self.play(FadeIn(MVT))
+        self.play(FadeOut(MVT))
+        self.remove(MVT)
+        self.wait(2)
+        temp = MathTex(
+            #     0              1         2            3          4          5          6    7                8   9       10              11         12      13     14        15           16     17
+            r"\sum_{i=1}^n", r"\sqrt{", r"\left(", r"\Delta t", r"\right)", r"^2", r"\cdot", r"r'_x(t^*_i)", "^2", "+",
+            r"\left(", r"\Delta t", r"\right)", r"^2", r"\cdot", r"r'_y(t^*_i)", "^2", "}").set_color(
+            GREEN).next_to(parafunc, direction=UP)
+        temp[1:-1].set_color(BLUE)
+        self.eqs.append((temp, [
+            [0, 1, 2, 3, 4, 5, None, None, "5c", 6, 7, 8, 9, 10, None, None, "10c", 11],
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+        ]))
+        self.ntx += 1
+        lns = transform_lines(20, True)
+        self.play(ApplyMethod(self.eq0[3].set_color,RED),ApplyMethod(self.eq0[11].set_color,RED)) #3,11
+
+
+
+        temp = MathTex(
+            #      0            1            2          3    4      5            6        7           8
+            r"\sum_{i=1}^n",r"\sqrt{", r"r'_x(t^*_i)", "^2", "+",r"r'_y(t^*_i)", "^2", r"}", r"\Delta t").set_color(
+            GREEN).next_to(parafunc, direction=UP)
+        temp[1:-1].set_color(PURPLE)
+        temp[-1].set_color(RED)
+        self.eqs.append((temp, [
+            [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
+            [0,1,None,8,None,None, None, 2, 3, 4, None, 8, None, None, None, 5, 6, 7]
+        ]))
+        self.ntx += 1
+        lns = transform_lines(30,True)
+        self.wait()
+
+        temp = MathTex(
+            #      0            1            2          3    4      5            6        7           8
+            r"\bigintsss_a^b", r"\sqrt{", r"r'_x(t)", "^2", "+", r"r'_y(t)", "^2", r"}", r"\; \tu{d}t").set_color(
+            GREEN).next_to(parafunc, direction=UP)
+        temp[1:-1].set_color(PURPLE)
+        temp[-1].set_color(RED)
+        self.eqs.append((temp, [
+            [x for x in range(9)],
+            [x for x in range(9)]
+        ]))
+        self.ntx += 1
+        lns = transform_lines(100, True)
+        self.wait()
+
+
+
+class Example(Scene):
+    def construct(self):
+        #              0    1   2   3   4   5   6
+        eq0 = MathTex("x=", "a", "(", "b", "+", "c", ")")
+        #              0    1       2   3   4   5
+        eq1 = MathTex("x=", "a", "b", "+", "a", "c")
+
+     #   eq1.align_to(eq0, UR)
+        self.play(FadeIn(eq0))
+        self.wait()
+        transform_indexes = [
+            [0, 1, "2f", 3, 4, "1c", 5, "6f"],
+            #  | |      | |  |   |  |
+            [0, 1, None, 2, 3, 4, 5, None],
+        ]
+        def getTexTransform(transform_indices):
+                return [
+                    Create(eq1[j]) if i is None else
+                    ReplacementTransform(eq0[i], eq1[j]) if type(i) is not str and j is not None else
+                    FadeOut(eq0[int(i[:-1])]) if i[-1] == "f" or j is None else
+                    ReplacementTransform(eq0[int(i[:-1])].copy(), eq1[j], path_arc=90 * DEGREES)
+                    for i, j in zip(*transform_indices)
+                ]
+
+        self.play(*getTexTransform(transform_indexes))
+
+class ArcLength56(Scene):
+    scale_factor = 1
+
+    def vector_func(self, t):
+        return np.array(
+            [self.scale_factor * t, self.scale_factor * (2/3 * t**(3/2)), 0])
+
+    def construct(self):
+        curve = ParametricFunction(lambda t: self.vector_func(t), t_range=[0, 5]).set_color(
+            RED)
+
+        c = 2*(2**(1/3)) - 1
+        curve2 = ParametricFunction(lambda t: self.vector_func(t), t_range=[0, c]).set_color(
+            WHITE)
+
+        d = Dot(self.vector_func(c),radius=DEFAULT_SMALL_DOT_RADIUS).set_color(GREEN)
+        # Number plane
+        npl = NumberPlane()
+
+        txt = MathTex(2).next_to(curve2.get_midpoint(),direction=DOWN+RIGHT,buff=SMALL_BUFF)
+        txt2 = MathTex(r"(?,?)").set_color(ORANGE).next_to(d,direction=RIGHT)
+        r = txt.add_background_rectangle()
+        txt2.add_background_rectangle()
+        v = VGroup(npl,curve,curve2,d,txt,txt2)
+        v.scale(1.7*sqrt(2)).shift(LEFT*2+DOWN*0.35)
+
+
+        # Add to scene
+        self.add(v)
 

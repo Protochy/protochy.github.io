@@ -1,9 +1,5 @@
 ---
 title: "Multivariable Calculus"
-weight: 1
+weight: 1000
 ---
-
-{{< centr >}}
-{{< button "../../multivar/prereqs" " # Begin!" "mb-g" >}}
-{{< /centr>}}
 

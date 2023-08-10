@@ -1,6 +1,6 @@
 ---
 title: "Vector functions"
-weight: 7
+weight: 1006
 description: >
   Functions of vectors. Yep. That's it.
 ---
@@ -85,12 +85,12 @@ wowzers, looks like it's as simple as taking the derivative of each component of
 
 ### Problems
 
-{{< prob "med" >}}
+{{< prob 4 >}}
 1. If you know about the Riemann integral, you can probably guess what the integral of a vector function is. 
 Prove that $$\Large \c{pink} \int_a^b \vec{r}(t) \\: \tu{d}t = \begin{bmatrix} \int_a^b r_1(t) \\: \tu{d}t \\\\[1.1ex\] \int_a^b r_2(t) \\: \tu{d}t \\\\[1.1ex\] \vdots \\\\[1.1ex\] \int_a^b r_n(t) \\: \tu{d}t \end{bmatrix}$$
 {{< /prob >}}
 <br>
-{{< prob "easy" >}}
+{{< prob 1 >}}
 2. Differentiate $$\Large \c{cyan} \vec{r}(t) = \vecD{t^2}{t^3}$$
 {{< /prob >}}
 <br>

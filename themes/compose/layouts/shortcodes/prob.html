@@ -1,22 +1,44 @@
 <!-- layouts/shortcodes/prob.html -->
+{{ $difficulty := .Get 0 }}
+{{ $color := "white" }}
+{{ if eq $difficulty "easy" }}{{ $difficulty = 2 }}{{ end }}
+{{ if eq $difficulty "med" }}{{ $difficulty = 5 }}{{ end }}
+{{ if eq $difficulty "hard" }}{{ $difficulty = 9 }}{{ end }}
+{{ if eq $difficulty "imp" }}{{ $difficulty = 12 }}{{ end }}
+{{ $r := 0 }}
+{{ $g := 0 }}
+{{ $b := 0 }}
+{{ if eq $difficulty 0 }}{{ $r = 0 }}{{ $g = 255 }}{{ $b = 255 }}{{ end }}
+{{ if eq $difficulty 1 }}{{ $r = 65 }}{{ $g = 255 }}{{ $b = 190 }}{{ end }}
+{{ if eq $difficulty 2 }}{{ $r = 170 }}{{ $g = 255 }}{{ $b = 85 }}{{ end }}
+{{ if eq $difficulty 3 }}{{ $r = 0 }}{{ $g = 255 }}{{ $b = 0 }}{{ end }}
+{{ if eq $difficulty 4 }}{{ $r = 200 }}{{ $g = 255 }}{{ $b = 0 }}{{ end }}
+{{ if eq $difficulty 5 }}{{ $r = 255 }}{{ $g = 255 }}{{ $b = 0 }}{{ end }}
+{{ if eq $difficulty 6 }}{{ $r = 255 }}{{ $g = 200 }}{{ $b = 43 }}{{ end }}
+{{ if eq $difficulty 7 }}{{ $r = 255 }}{{ $g = 128 }}{{ $b = 0 }}{{ end }}
+{{ if eq $difficulty 8 }}{{ $r = 255 }}{{ $g = 85 }}{{ $b = 0 }}{{ end }}
+{{ if eq $difficulty 9 }}{{ $r = 255 }}{{ $g = 0 }}{{ $b = 0 }}{{ end }}
+{{ if eq $difficulty 10 }}{{ $r = 255 }}{{ $g = 43 }}{{ $b = 85 }}{{ end }}
+{{ if eq $difficulty 11 }}{{ $r = 170 }}{{ $g = 85 }}{{ $b = 128 }}{{ end }}
+{{ if eq $difficulty 12 }}{{ $r = 128 }}{{ $g = 0 }}{{ $b = 128 }}{{ end }}
+{{ $color := printf "rgb(%d,%d,%d)" $r $g $b }}
 <div style="display: block;">
-    <div style="position: relative; display: inline-block; max-width:100% !important; border: 3px solid 
-  {{ if eq (.Get 0) "easy" }}lime
-  {{ else if eq (.Get 0) "med" }}yellow
-  {{ else if eq (.Get 0) "hard" }}red
-  {{ else if eq (.Get 0) "imp" }}purple
-  {{ else }}white{{ end }};
-  border-radius: 10px; padding: 5px 16px; text-align: left; background-color: 
-  {{ .Get 1 | default "transparent" }}; color: 
-  {{ .Get 2 | default "inherit" }}; overflow-x: auto; overflow-y: hidden;">
-{{ if eq (.Get 0) "easy" }} 
-<img class="diffshape1" src="/images/tri.svg" style="position: absolute; top: -5px; right: 5px;">
-{{ else if eq (.Get 0) "med" }}
-<img class="diffshape2" src="/images/sq.svg" style="position: absolute; top: -5px; right: 12px;">
-{{ else if eq (.Get 0) "hard" }}
-<img class="diffshape3" src="/images/pent.svg" style="position: absolute; top: -7px; right: 10px;">
-{{ else if eq (.Get 0) "imp" }}
+<div style="position: relative; display: inline-block; max-width:100% !important; border: 3px solid {{ $color | safeCSS}}; border-radius: 10px; padding: 5px 16px; text-align: left; background-color:{{ .Get 1 | default "transparent" }}; color:{{ .Get 2 | default "inherit" }}; overflow-x: auto; overflow-y: hidden;">
+{{ if lt $difficulty 5 }}
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 531.74 460.5" class="diffshape1" style="position: absolute; top: 7px; right: 7px;">
+<polygon fill="{{ $color }}" stroke="#000000" points="0.866,460 265.87,1 530.874,460"/>
+</svg>{{ else if and (ge $difficulty 5) (lt $difficulty 9) }}
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="16.000000pt" height="16.000000pt" viewBox="0 0 20.000000 20.000000" class="diffshape2" style="position: absolute; top: 10.5px; right: 11px;">
+<g transform="translate(0.000000,420.000000) scale(0.100000,-0.100000)" fill="{{ $color }}" stroke="none">
+<path d="M0 2100 l0 -2100 2100 0 2100 0 0 2100 0 2100 -2100 0 -2100 0 0 -2100z"/>
+</g>
+</svg>
+{{ else if and (ge $difficulty 9) (lt $difficulty 12) }}
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 588 560" class="diffshape3" style="position: absolute; top: 7px; right: 9px;">
+<polygon points="294,3 585.246118,214.602691 474,556.983037 114,556.983037 2.753882,214.602691" fill="{{ $color }}" stroke="red" stroke-width="4"/>
+</svg>{{ else if eq $difficulty 12 }}
 <!-- Add appropriate shape for "imp" if needed -->
-{{ end }}<div style="padding: 5px 20px 5px 5px;">{{ .Inner | markdownify }}</div>
+{{ end }}
+<div style="font-size: {{ if lt $difficulty 5 }}18px{{ else }}22px{{ end }}; position: absolute; top: {{ if lt $difficulty 5 }}0px{{ else }}-3px{{ end }}; right: {{ if lt $difficulty 5 }}5.5px{{ else }}5px{{ end }}; color: rgb(40,40,40); padding: 11px {{ if eq $difficulty 1}}14px {{else if eq $difficulty 0}} 11px {{else if eq $difficulty 10}} 8px {{else}}12px{{end}} 5px 5px;">{{ $difficulty }}</div>
+<div style="padding: 5px 50px 5px 5px;">{{ .Inner | markdownify }}</div>
 </div></div>
-  

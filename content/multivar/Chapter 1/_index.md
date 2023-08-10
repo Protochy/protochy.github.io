@@ -1,6 +1,6 @@
 ---
 title: "Chapter 1: Vectors"
-weight: 5
+weight: 1004
 description: >
   Vectors... and functions of vectors!
 ---

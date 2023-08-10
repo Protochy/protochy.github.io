@@ -1,6 +1,6 @@
 ---
 title: "Definitions (Can skip)"
-weight: 11
+weight: 1010
 description: >
   Curve definitions...
 ---

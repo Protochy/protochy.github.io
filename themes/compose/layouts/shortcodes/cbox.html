@@ -1,5 +1,5 @@
 <div class="custom-box">
-<div class="gradient-text">{{ markdownify .Inner }}</div>
+<div> {{ markdownify .Inner }}</div>
 </div>
 
 <style>
@@ -11,11 +11,15 @@
         border-radius: 10px;
         display: inline-block;
         text-align: left;
+        animation: rainbow 8s ease infinite;
+        overflow-x: auto; 
+        overflow-y: hidden;
+        max-width:100% !important;
     }
-    .gradient-text {
-        background: linear-gradient(to right, red, orange, yellow, lime, cyan, violet);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
+
+    @keyframes rainbow { 
+        0%{background-position:0% 50%}
+        50%{background-position:100% 25%}
+        100%{background-position:0% 50%}
     }
 </style>

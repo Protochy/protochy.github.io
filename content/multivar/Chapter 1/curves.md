@@ -1,6 +1,6 @@
 ---
 title: "Curves and parameterisations"
-weight: 8
+weight: 1007
 description: >
   What is a curve/path and how do you parameterise it?
 ---
@@ -48,7 +48,7 @@ Notice how they both draw out the unit circle but at different speeds? That's be
     Suppose $\c{pink} \vec{r}(t) \neq 0$ and $\c{lime} \vec{r}(t) \x \vec{r'}(t) = 0$ for all points on $\c{lime} \mathcal{C}$. Show that $\c{lime} \mathcal{C}$ lies on the surface of a sphere and determine the centre and radius of the sphere.
 {{< /prob >}}
 <br>
-{{< prob "hard" >}}
+{{< prob 8 >}}
 2. Consider the curve with equation
 $$\Large \c{cyan}y = x^2$$
 Find a parameterisation of this curve using a parameter $\c{pink} \mu$ such that $\c{pink} 0 < \mu < 1$

@@ -1,6 +1,6 @@
 ---
 title: "Vector products"
-weight: 6
+weight: 1005
 description: >
   Dot product and cross product and their use
 ---
@@ -181,7 +181,7 @@ The cross product can only be defined for 3 and 7 dimensional vectors {{< kekwai
 $$ \Large \c{orange} (\vec{a} \times \vec{b}) \x \vec{a} = (\vec{a} \times \vec{b}) \x \vec{b} = 0$$
 {{</ prob >}}
 <br>
-{{<prob "easy">}}
+{{<prob 1>}}
 2. Prove that 
 $$ \Large \c{cyan} \vec{a} \x \vec{a} = |\vec{a}|^2$$
 {{</ prob >}}
@@ -191,7 +191,7 @@ $$ \Large \c{cyan} \vec{a} \x \vec{a} = |\vec{a}|^2$$
 {{< col "cyan">}} or in other words, the {{< col "red" >}} volume {{</ col >}} of the *parallelepiped* spanned by the three vectors. {{</ col >}}
 {{</ prob >}}
 <br>
-{{<prob "hard">}}
+{{<prob 8>}}
 4. Prove that the area of a *simple* polygon is given by
 $$ \Large \\c{lime} \\f{1}{2} \\x \left(\left\|\vec{v}\_n \times \\vec{v}\_{1}\right| +  \\sum_{i=1}^{n-1} \left|\vec{v}_i \times \\vec{v}\_{i+1}\right| \right)$$
 <img src="/anim/mvchap1/shoelace.png" alt="Shoelace Example" width="1280" height="720"> 

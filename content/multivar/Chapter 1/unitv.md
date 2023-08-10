@@ -1,6 +1,6 @@
 ---
 title: "Special unit vectors"
-weight: 9
+weight: 1008
 description: >
   Your tangent, unit tangent, normal, and principal unit normal vectors.
 ---
