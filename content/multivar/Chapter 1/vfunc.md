@@ -99,7 +99,7 @@ Prove that $$\Large \c{pink} \int_a^b \vec{r}(t) \\: \tu{d}t = \begin{bmatrix} \
 $$\Large \c{magenta} \deriv{t} \left(\vec{a}(t) \x \vec{b}(t)\right) = \f{\tu{d} \vec{a}}{\tu{d}t} \vec{b} + \f{\tu{d} \vec{b}}{\tu{d}t} \vec{a}$$
 {{< /prob >}}
 <br>
-{{< prob "hard" >}}
+{{< prob 7 >}}
 4. If $\c{lime} \vec{r}(t)$ is a vector function satisfying the following property that $\c{lime} \vec{r}(t) \x \vec{r'}(t) = 0 \\; \forall t$ 
 
 (for all $t$), then prove that $\c{orchid} |\vec{r}(t)|$ is constant. 

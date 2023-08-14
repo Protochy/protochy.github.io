@@ -11,6 +11,8 @@ weight: 2000
 
 These are my notes for <span class="inline-header">{{<arcol>}} NMT (aka metric spaces) {{</arcol>}}</span>
 
+Example video:
+<video width=100% controls> <source src="/anim/nmt/ch1/l2convex.mp4" type="video/mp4">
 
 
 {{< centr >}}

@@ -599,6 +599,8 @@ class Slider:
     dot_color = GREEN_A
     texT_color = BLUE
     vector_color = BLUE
+    ptr = None
+    txt = None
 
     def add_labels(self, slider, labels):
         slider.add_labels(labels)
@@ -608,12 +610,23 @@ class Slider:
             *[Line(start=slider.n2p(x) - 0.2 * UP, end=slider.n2p(x) + 0.2 * UP, stroke_width=2) for x in [-4, 2]]
         )
 
+    def change_vector_color(self,c):
+        self.vector_color = c
+        self.ptr.set_color(c)
+        return self
+
+    def change_text_col(self,c):
+        self.texT_color = c
+        self.txt.set_color(c)
+        return self
+
+
     def __init__(self, range=[0, 2 * np.pi, np.pi], length=5,
                  labels={0: 0, np.pi: MathTex(r"\pi"), 2 * np.pi: MathTex(r"2\pi")}):
-        self.t_tracker = ValueTracker(0)
-        txt = MathTex("t")
+        self.txt = MathTex("t")
         self.lower = range[0]
         self.upper = range[1]
+        self.t_tracker = ValueTracker(self.lower)
 
         slider = NumberLine(
             x_range=range,
@@ -628,16 +641,21 @@ class Slider:
         self.add_labels(slider, labels)
 
         dot = Dot()
+        dot.move_to(
+            slider.point_from_proportion(self.t_tracker.get_value() / (self.upper - self.lower))).set_color(
+            self.dot_color)
         dot.add_updater(
             lambda m: m.move_to(
                 slider.point_from_proportion(self.t_tracker.get_value() / (self.upper - self.lower))).set_color(
                 self.dot_color))
-        ptr = Arrow().rotate(-PI / 2).set_color(self.vector_color)
-        ptr.add_updater(lambda m: m.next_to(dot, direction=UP))
-        txt.add_updater(lambda m: m.next_to(ptr.get_start(), direction=UP).set_color(self.texT_color))
+        self.ptr = Arrow().rotate(-PI / 2).set_color(self.vector_color)
+        self.ptr.next_to(dot, direction=UP)
+        self.ptr.add_updater(lambda m: m.next_to(dot, direction=UP).set_color(self.vector_color))
+        self.txt.next_to(self.ptr.get_start(), direction=UP).set_color(self.texT_color)
+        self.txt.add_updater(lambda m: m.next_to(self.ptr.get_start(), direction=UP).set_color(self.texT_color))
 
         # Group slider, dot and pointer
-        self.slider_group = VGroup(slider, dot, ptr, txt).to_corner(DOWN + 2 * LEFT, buff=0.3)
+        self.slider_group = VGroup(slider, dot, self.ptr, self.txt).to_corner(DOWN + 2 * LEFT, buff=0.3)
 
 
 class TangentVectorParametric(Scene):
@@ -1154,3 +1172,184 @@ class ArcLength56(Scene):
         # Add to scene
         self.add(v)
 
+class TriangleInequality(Scene):
+    def construct(self):
+        # Create a Number Plane
+        number_plane = NumberPlane()
+
+        # Define vectors a, b, and a + b
+        a = Vector([2, 2, 0]).set_color(GREEN)
+        b = Vector([2, -1, 0]).set_color(ORANGE)
+        a_plus_b = Vector(a.get_end() + b.get_end()).set_color("#da70d6")
+
+        # Move b vector to start at the end of a
+        b.shift(a.get_end())
+
+        # Create vector labels
+        a_label = MathTex("\\vec{x}").next_to(a.get_center(), UP+LEFT,buff=0.15).set_color(GREEN)
+        b_label = MathTex("\\vec{y}").next_to(b.get_center(), UP+RIGHT, buff = 0.15).set_color(ORANGE)
+        sum_label = MathTex("\\vec{x} + \\vec{y}").next_to(a_plus_b.get_center(), DOWN, buff=0.15).set_color("#da70d6").add_background_rectangle().rotate(
+            a_plus_b.get_angle())
+
+        # Create the inequality in LaTeX
+        inequality_tex = MathTex("|\\vec{x} + \\vec{y}|", "\\leq", "|\\vec{x}|", "+", "|\\vec{y}|")
+        inequality_tex.set_color("#da70d6")
+        inequality_tex[2].set_color(GREEN)
+        inequality_tex[4].set_color(ORANGE)
+        inequality = BackgroundRectangle(inequality_tex)
+        inequality_group = VGroup(inequality, inequality_tex)
+        inequality_group.move_to(2 * DOWN)
+
+        # Create a group to scale everything up
+        everything = VGroup(number_plane, a, b, a_plus_b, a_label, b_label, sum_label, inequality_group)
+        everything.scale(1.414)
+
+        # Add everything to the scene
+        self.add(everything)
+
+class Lp(Scene):
+    def construct(self):
+        npl = NumberPlane().scale(2)
+
+        # Define the labels
+        labels = [
+            Tex("1").next_to(npl.c2p(1, 0), DOWN),
+            Tex("-1").next_to(npl.c2p(-1, 0), DOWN),
+            Tex("1").next_to(npl.c2p(0, 1), LEFT, buff=0.17),
+            Tex("-1").next_to(npl.c2p(0, -1), LEFT, buff=0.17)
+        ]
+
+        # L2 Unit Ball (Circle)
+      #  l2_ball = Circle(radius=2, color=RED, fill_opacity=0.4)
+        t = ValueTracker(2)
+        l2_ball = always_redraw(
+            lambda: ImplicitFunction(lambda x, y: abs(x) ** t.get_value() + abs(y) ** t.get_value() - 1 if t.get_value() < 90 else
+            max(abs(x),abs(y)) - 1
+                                     , color=RED)
+            .scale(2)
+            .set_fill(RED, opacity=0.4)
+            .set_stroke(width=3)  # You can adjust the stroke width to your liking
+        )
+
+       # def makeText():
+        #    v = int(t.get_value()) if int(t.get_value()) == t.get_value() else round(t.get_value(),2)
+         #   s = MathTex(r"|x|", "^{",v, "}+", r"|y|", "^{",v, "}=", "1").scale(1.5).to_edge(UP, buff=MED_SMALL_BUFF + 0.05)
+          #  s[0].set_color(GREEN)
+          #  s[1].set_color("#da70d6")
+          #  s[3].set_color(ORANGE)
+          #  s[4].set_color("#da70d6")
+          #  return s
+        #txt = always_redraw(makeText)
+        txt = MathTex(r"x",r"^2", "+", r"y","^2",r"\leqslant","1").scale(1.5).to_edge(UP, buff=MED_SMALL_BUFF + 0.05)
+        txt[0].set_color(GREEN)
+        txt[1].set_color("#da70d6")
+        txt[3].set_color(GREEN)
+        txt[4].set_color("#da70d6")
+
+        txt1 = MathTex(r"|x|", r"^1", "+", r"|y|", "^1", "\leqslant", "1").scale(1.5).to_edge(UP, buff=MED_SMALL_BUFF + 0.05)
+        txt1[0].set_color(GREEN)
+        txt1[1].set_color("#da70d6")
+        txt1[3].set_color(GREEN)
+        txt1[4].set_color("#da70d6")
+
+        txt2 = MathTex(r"\max(","|x|",",","|y|",")", "\leqslant", "1").scale(1.5).to_edge(UP, buff=MED_SMALL_BUFF + 0.05)
+        txt2[0].set_color("#da70d6")
+        txt2[1].set_color(GREEN)
+        txt2[3].set_color(GREEN)
+        bg1 = BackgroundRectangle(txt)
+        adj = VGroup(npl, l2_ball,*labels, bg1, txt) #l2_ball
+        self.add(adj)
+        self.play(t.animate.set_value(1),TransformMatchingTex(txt,txt1),run_time=1)
+
+        def genPoint(x):
+           # print(1-abs(x))
+            if t.get_value() > 90:
+                if x > -1:
+                    return 2
+                return (2-abs(x+1))
+            return 2*(1-(abs(x))**t.get_value())**(1/t.get_value())
+        t1 = ValueTracker(1) # -1 0 1 top hemi
+        t2 = ValueTracker(0)
+
+        dot1 = Dot([2,0,0]).set_color(BLUE).add_updater(lambda d: d.move_to([-2 if t1.get_value() < -1 else (2*t1.get_value() if t1.get_value() <= 1 else 2*(2-t1.get_value())),genPoint(t1.get_value()) if t1.get_value() <= 1 else -genPoint(2 - t1.get_value()),0]))
+        dot2 = Dot([0,2,0]).set_color(TEAL).add_updater(lambda d: d.move_to([-2 if t2.get_value() < -1 else (2*t2.get_value() if t2.get_value() <= 1 else 2*(2-t2.get_value())),genPoint(t2.get_value()) if t2.get_value() <= 1 else -genPoint(2 - t2.get_value()),0]))
+        lne = always_redraw(lambda:
+                            Line(dot1.get_center(),dot2.get_center()).set_color(YELLOW)
+                            )
+        self.play(Create(dot1),Create(dot2))
+        self.play(Create(lne))
+
+        self.wait()
+        self.play(t1.animate.set_value(1.7),t2.animate.set_value(0.7),run_time=3)
+        self.wait(0.6)
+
+        self.play(AnimationGroup(t.animate.set_value(100), TransformMatchingTex(txt1, txt2), run_time=1), AnimationGroup(t1.animate.set_value(2.75),t2.animate.set_value(-1.66),run_time=4.3))
+
+
+
+class LpLI(Scene):
+    def construct(self):
+        SHIFT = UP + 1.5*RIGHT
+        npl = NumberPlane().scale(2)
+
+        # Define the labels
+        labels = [
+            Tex("1").next_to(npl.c2p(1, 0), DOWN),
+            Tex("-1").next_to(npl.c2p(-1, 0), DOWN),
+            Tex("1").next_to(npl.c2p(0, 1), LEFT, buff=0.17),
+            Tex("-1").next_to(npl.c2p(0, -1), LEFT, buff=0.17)
+        ]
+
+        # L2 Unit Ball (Circle)
+        l2_ball = Circle(radius=2, color=RED, fill_opacity=0.4)
+        t = ValueTracker(2)
+
+        txt = MathTex(r"x",r"^2", "+", r"y","^2",r"\leqslant","1").scale(1.5).to_edge(UP, buff=MED_SMALL_BUFF + 0.05)
+        txt[0].set_color(GREEN)
+        txt[1].set_color("#da70d6")
+        txt[3].set_color(GREEN)
+        txt[4].set_color("#da70d6")
+
+        txt1 = MathTex(r"|x|", r"^1", "+", r"|y|", "^1", "\leqslant", "1").scale(1.5).to_edge(UP, buff=MED_SMALL_BUFF + 0.05)
+        txt1[0].set_color(GREEN)
+        txt1[1].set_color("#da70d6")
+        txt1[3].set_color(GREEN)
+        txt1[4].set_color("#da70d6")
+
+        txt2 = MathTex(r"\max(","|x|",",","|y|",")", "\leqslant", "1").scale(1.5).to_edge(UP, buff=MED_SMALL_BUFF + 0.05)
+        txt2[0].set_color("#da70d6")
+        txt2[1].set_color(GREEN)
+        txt2[3].set_color(GREEN)
+        bg1 = BackgroundRectangle(txt)
+        adj = VGroup(npl, l2_ball,*labels) #l2_ball
+        adj.shift(SHIFT)
+        self.add(adj)
+
+        def genPoint(x):
+           # print(1-abs(x))
+            if t.get_value() > 90:
+                if x > -1:
+                    return 2
+                return (2-abs(x+1))
+            return 2*(1-(abs(x))**t.get_value())**(1/t.get_value())
+        t1 = ValueTracker(1.7) # -1 0 1 top hemi
+        t2 = ValueTracker(0.7)
+
+        dot1 = Dot(SHIFT+[-2 if t1.get_value() < -1 else (2*t1.get_value() if t1.get_value() <= 1 else 2*(2-t1.get_value())),genPoint(t1.get_value()) if t1.get_value() <= 1 else -genPoint(2 - t1.get_value()),0]).set_color(BLUE).add_updater(lambda d: d.move_to(SHIFT+[-2 if t1.get_value() < -1 else (2*t1.get_value() if t1.get_value() <= 1 else 2*(2-t1.get_value())),genPoint(t1.get_value()) if t1.get_value() <= 1 else -genPoint(2 - t1.get_value()),0]))
+        dot2 = Dot(SHIFT+[-2 if t2.get_value() < -1 else (2*t2.get_value() if t2.get_value() <= 1 else 2*(2-t2.get_value())),genPoint(t2.get_value()) if t2.get_value() <= 1 else -genPoint(2 - t2.get_value()),0]).set_color(TEAL).add_updater(lambda d: d.move_to(SHIFT+[-2 if t2.get_value() < -1 else (2*t2.get_value() if t2.get_value() <= 1 else 2*(2-t2.get_value())),genPoint(t2.get_value()) if t2.get_value() <= 1 else -genPoint(2 - t2.get_value()),0]))
+        lne = always_redraw(lambda:
+                            Line(dot1.get_center(),dot2.get_center()).set_color(YELLOW)
+                            )
+        li = VGroup(dot1,dot2,lne)
+        self.add(li)
+        slider = Slider(range=[0, 1], labels={0:0,1:1})
+        # {0:0,np.pi/2:MathTex(r"\f{\pi}{2}"),np.pi:MathTex(r"\pi")}
+        slider_group = slider.slider_group.shift(UP)
+        slider.change_vector_color(GREEN).change_text_col(GREEN)
+        self.add(slider_group)
+        interpPoint = dot1.copy().set_color(PURE_GREEN).scale(1.5)
+        interpPoint.add_updater(lambda m: m.move_to(slider.t_tracker.get_value()*dot1.get_center() + (1-slider.t_tracker.get_value())*dot2.get_center()))
+        self.play(Create(interpPoint))
+        self.wait()
+        self.play(
+            slider.t_tracker.animate.set_value(slider.upper), run_time=6)
