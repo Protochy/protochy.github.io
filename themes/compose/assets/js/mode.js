@@ -3,6 +3,8 @@ function prefersColor(mode){
 }
 
 function systemMode() {
+  return dark;
+  
   if (window.matchMedia) {
     return window.matchMedia(prefersColor(dark)).matches ? dark : light;
   }

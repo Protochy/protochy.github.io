@@ -76,7 +76,7 @@ $$
 <img style="width: 200px" src="https://media.tenor.com/9XyRPn8GZr8AAAAC/quod-erat-demonstrandum-unbelievable.gif">
 {{</toggle>}}
 {{</prob>}}
-Just to be crystal clear. A {{<arcol>}} norm {{</arcol>}} $\c{orchid} |\x|$ is a mapping from a vector space $\c{orange} V \c{lime} \to \mbb{R}^+$, as in it takes any vector to a positive real {{<kekw>}} as one would expect length to do.   
+Just to be crystal clear. A {{<arcol>}} norm {{</arcol>}} $\c{orchid}  |\x|$ is a mapping from a vector space $\c{orange} V \c{lime} \to \mbb{R}^+$, as in it takes any vector to a positive real {{<kekw>}} as one would expect length to do.   
 
 we're gonna see a pretty nifty proof soon, but first let's go through one more definition {{<kekwait>}} *<h4> Ahem  </h4>* 
 
