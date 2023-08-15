@@ -26,7 +26,7 @@ Let's denote the "length" of some vector $\large \c{cyan} \vec{x}$ as $\c{cyan} 
 1. {{<col "red">}} *Always nonnegative*: {{</col>}} $\c{orchid} |\vec{x}| \geqslant 0$
 obvious, right? How could length be negative. We're realists here! (for now)
     * Actually, $\c{orchid} \vec{x} = \vec{0} \iff | \vec{x} | = 0$, so only the zero vector has magnitude 0.
-2. {{<col "red">}} *Scalar pullout*: {{</col>}} $\c{violet}| \lambda \vec{x} | = \lambda \x | \vec{x} |$ for $\c{violet} \lambda$ a scalar, so we can just pull out any scalar. This also makes sense right? It's just scaling the vector!
+2. {{<col "red">}} *Scalar pullout*: {{</col>}} $\c{violet}| \lambda \vec{x} | = |\lambda| \x | \vec{x} |$ for $\c{violet} \lambda$ a scalar, so we can just pull out any scalar. This also makes sense right? It's just scaling the vector!
 
 3. {{<col "red">}} *$\c{pink} \Delta$ inequality*: {{</col>}} Choose two arbitrary vectors $\c{magenta} \vec{x}, \vec{y}$, then $\c{magenta} |\vec{x} + \vec{y}| \leqslant |\vec{x}| + |\vec{y}|$ (Triangle Inequality)   
 This one is a bit of a pain in the ass but oh well you take the good with the bad.
@@ -39,7 +39,7 @@ Anyway, if a "length" satisfies all these axioms then it's a &nbsp;<span class="
 {{</cbox>}}
 {{</centr>}}
 <br>
-{{<prob 3>}}
+{{<prob 5>}}
 Show that the "traditional" length is a norm.
 $$\c{cyan} \Large |\vec{x}| = \left(\sum_{i=1}^n x^2_i\right)^{\Large \frac{1}{2}}$$
 {{<tip>}}
@@ -76,7 +76,7 @@ $$
 <img style="width: 200px" src="https://media.tenor.com/9XyRPn8GZr8AAAAC/quod-erat-demonstrandum-unbelievable.gif">
 {{</toggle>}}
 {{</prob>}}
-Just to be crystal clear. A {{<arcol>}} norm {{</arcol>}} $\c{orchid}  |\x|$ is a mapping from a vector space $\c{orange} V \c{lime} \to \mbb{R}^+$, as in it takes any vector to a positive real {{<kekw>}} as one would expect length to do.   
+Just to be crystal clear. A {{<arcol>}} norm {{</arcol>}} $\c{orchid} |\x|$ is a mapping from a vector space $\c{orange} V \c{lime} \to \mbb{R}^+$, as in it takes any vector to a positive real {{<kekw>}} as one would expect length to do.   
 
 we're gonna see a pretty nifty proof soon, but first let's go through one more definition {{<kekwait>}} *<h4> Ahem  </h4>* 
 
@@ -130,7 +130,7 @@ What is it that we want to do?
 {{<prob 5>}}
 Show that
 $$\Large \c{yellow} t\vec{x} + (1-t)\vec{y} \in \c{orchid} \mathfrak{B}$$
-for $\c{lime} \vec{x}, \vec{y} \in \c{orchid} \mathfrak{B}$
+for $\c{lime} \vec{x}, \vec{y} \in \c{orchid} \mathfrak{B}$ and $\c{yellow} t \in [0,1]$
 {{<tip>}}
 Remember that the ONLY criteria to be in $\c{orchid} \mathfrak{B}$ is for the {{<arcol>}} norm {{</arcol>}} $\c{violet} \leqslant 1$!
 {{</tip>}}
@@ -142,7 +142,7 @@ Namely, let $\c{orange} \vec{a} := t\vec{x}$ and $\c{orange} \vec{b} := (1-t)\ve
 Using the hint above, we note that
 $$\large \begin{align*}
 \c{orange}  |\vec{a} + \vec{b}| &\leqslant \c{orange}  |\vec{a}| + |\vec{b}| \\\
-\c{yellow}  |t\vec{x} + (1-t)\vec{y}| &\leqslant \c{yellow} |t|\vec{x}| + |(1-t)\vec{y}| \\\
+\c{yellow}  |t\vec{x} + (1-t)\vec{y}| &\leqslant \c{yellow} |t\vec{x}| + |(1-t)\vec{y}| \\\
 &= \c{yellow} t|\vec{x}| + (1-t)|\vec{y}| \normalsize\tu{&nbsp;&nbsp;&nbsp;(Using scalar pullout)} \large \\\
 &\leqslant \c{lime} t \x 1 + (1-t) \x 1  \normalsize\tu{&nbsp;&nbsp;&nbsp;(Using properties of } \c{orchid} \mathfrak{B} \c{lime} \tu{)}\large\\\
 &= \c{cyan} 1
@@ -156,7 +156,7 @@ ok, so what? We showed that if a map $\c{pink} ||: V \to \mbb{R}^+$ satisfies th
 {{<box "pink">}}
 *Lemma 69.* If a map $\c{pink} ||: V \to \mbb{R}^+$ satisfies the first two {{<arcol>}} norm {{</arcol>}} axioms **AND** its unit ball is **convex**, then it satisfies the triangle inequality and is a norm!  
 
-okay let's get into it. Let's take two arbitrary vectors $\c{lime} \vec{x},\vec{y} \in V$ and consider THIS:  
+okay let's get into it. Let's take two arbitrary **non-zero** vectors $\c{lime} \vec{x},\vec{y} \in V$ and consider THIS:  
 $$\Large \c{#F49EC4} \begin{align*}
 \vec{U}_x &= \f{\vec{x}}{|\vec{x}|}  \\\
 \vec{U}_y &= \f{\vec{y}}{|\vec{y}|} 
