@@ -23,13 +23,18 @@ description: >
 
 okay SO we've seen a few example of norms, but every single one you've seen up till now is actually part of something more *general*   
 ### <span id="a-r-t" style="color:rgba(0,255,0,1)">$\ell^p$ norms</span>
+<div id="normlp">
 {{<centr>}}
 {{<box "lime" "transparent" "pink">}}
 We define the $\c{lime} \ell^p$ norms on $\c{cyan} \mbb{R}^n$ as follows:  
 Let $\c{pink} p \geqslant 1$, then 
-$$\Large \c{orchid} |\vec{x}| = \left(\sum_{i=1}^n |x_i|^p \right)^{\large \f{1}{p}}$$
+$$\Large \begin{align*} \c{orchid} |\vec{x}|\_{\c{lime} \ell^p} \c{orchid} &\c{orchid}= \left(\sum_{i=1}^n |x_i|^p \right)^{\large \f{1}{p}} \\\
+\c{orchid} |\vec{x}|\_{\c{lime} \ell^{\infty}} \c{orchid} &\c{orchid}= \max(|x_1|,|x_2|,\dotsc,|x_n|) & \c{cyan} \star
+ \end{align*}$$
+{{< plink href="../norm/#norm3b" text="$\star$ (Problem 3b)" >}}
 {{</box>}}
 {{</centr>}}
+</div>
 
 The traditional $\c{lime} \ell^2$ is a member of this infinite family. Christmas must be painful. {{<kekw>}}   
 
@@ -123,6 +128,11 @@ $$\Large \begin{align*}
 \c{yellow} |t\c{pink} \vec{x}\c{yellow} + (1-t)\c{pink} \vec{y}\c{yellow}| &\in \c{orchid} \mathfrak{B}
 \end{align*}$$
 <img style="width: 200px" src="https://media.tenor.com/9XyRPn8GZr8AAAAC/quod-erat-demonstrandum-unbelievable.gif">
+<div id="normminkowski"> {{<tip>}}
+Now that we've shown $\c{lime} \ell^p$ is a {{<arcol>}} norm {{</arcol>}} we have by the {{<col "orchid">}} Triangle Inequality {{</col>}} for norms for that 
+$$\Large \c{orchid} \boxed{|\vec{x} + \vec{y}|\_{\c{lime} \ell^p} \leqslant |\vec{x}|\_{\c{lime} \ell^p} + |\vec{y}|\_{\c{lime} \ell^p}}$$
+{{<centr>}} <h3> {{<col "orchid">}}  The Minkowski Inequality {{</col>}} </h3>  {{</centr>}}
+{{</tip>}} </div>
 
 ### Equivalency
 Didn't think norms could be equivalent did ya? Well I sure didn't. Anyway, the definition is kinda reasonable-ish. It's like Big-$\theta$'s definition, and by that I mean pretty much exactly it but for norms.
@@ -130,11 +140,11 @@ Didn't think norms could be equivalent did ya? Well I sure didn't. Anyway, the d
 {{<box "indigo">}}
 *Equivalency of two* {{<arcol>}} *norms*: {{</arcol>}} 
 
-Two norms on *the same* vector space $\c{lime} X$, $\c{pink} ||\_{1}$ and $\c{orange} ||\_{2}$ are **equivalent** iff one of the conditions hold (since then the other one will also):
+Two norms on *the same* vector space $\c{lime} V$, $\c{pink} ||\_{1}$ and $\c{orange} ||\_{2}$ are **equivalent** iff one of the conditions hold (since then the other one will also):
 
 1.  $\c{cyan} \exists \\, 0 < c_1 \leqslant c_2$ such that 
-$$\Large \c{magenta} \boxed{\c{orchid} c_1 |\vec{x}|_{1} \leqslant |\vec{x}|_2 \leqslant c_2 |\vec{x}|_1} \c{lime} \tu{&nbsp;&nbsp;&nbsp;} \\; \forall \\, \vec{x} \in X$$
-Basically if you can squeeze one of the norms in between the others for ALL $\c{lime} \vec{x} \in X$  
+$$\Large \c{magenta} \boxed{\c{orchid} c_1 |\vec{x}|_{1} \leqslant |\vec{x}|_2 \leqslant c_2 |\vec{x}|_1} \c{lime} \tu{&nbsp;&nbsp;&nbsp;} \\; \forall \\, \vec{x} \in V$$
+Basically if you can squeeze one of the norms in between the others for ALL $\c{lime} \vec{x} \in V$  
 
 2.  $\c{cyan} \exists \\, 0 < c_1 \leqslant c_2$ such that 
 $$\Large \c{magenta} \boxed{\c{orchid} c_1 \mathfrak{B}\_{1} \subseteq \mathfrak{B}\_{2} \subseteq c_2 \mathfrak{B}\_{1}}$$
@@ -146,16 +156,16 @@ Basically the same thing as condition 1 but with unit balls instead.
 ### Problems
 Everyone's favourite section woooo...
 {{<prob 4>}}
-1. Show that if $\c{pink} ||$ is a {{<arcol>}} norm {{</arcol>}} on $\c{lime} X$, then 
+1. Show that if $\c{pink} ||$ is a {{<arcol>}} norm {{</arcol>}} on $\c{lime} V$, then 
 $$\Large \begin{array}{lr}
- \c{gold} \left| |\vec{x}-\vec{y}| \right| \leqslant |\vec{x}-\vec{y}| & \tu{for any } \c{lime} \vec{x},\vec{y} \in X
+ \c{gold} \left| |\vec{x}|-|\vec{y}| \right| \leqslant |\vec{x}-\vec{y}| & \tu{for any } \c{lime} \vec{x},\vec{y} \in V
 \end{array}$$
 {{<toggle "Hint (Basically answer)" "Hide answer">}}
 {{<rcol>}} Reverse Triangle Inequality! {{</rcol>}}
 {{</toggle>}}
 {{</prob>}} <br>
 {{<prob 4>}}
-2a. Show that the {{<arcol>}} norm {{</arcol>}} equivalency definition is actually an `equivalence relation` on $\large \c{lime} \mathcal{N}(X)$, the set of all {{<arcol>}} norms {{</arcol>}} on $\c{lime} \large X$
+2a. Show that the {{<arcol>}} norm {{</arcol>}} equivalency definition is actually an `equivalence relation` on $\large \c{lime} \mathcal{N}(V)$, the set of all {{<arcol>}} norms {{</arcol>}} on $\c{lime} \large V$
 {{<toggle "Hint" "Hide hint">}}
 Show {{<col "turquoise">}} reflexivity, symmetry, and transitivity {{</col>}}
 {{</toggle>}}
@@ -171,7 +181,7 @@ Use the fact that {{<arcol>}} norm {{</arcol>}} equivalency is an `equivalence r
 Let $\large \c{magenta} K = \infty$
 {{</toggle>}}
 {{</prob>}} <br>
-{{<prob 6>}}
+{{<prob 6 "nfctsspace">}}
 3. Show that the following is a {{<arcol>}} norm: {{</arcol>}}
 $$\Large \c{silver} |f|_{L^p} = \left(\int_a^b |f(x)|^p \\: \tu{d}x \right)^{\Large \f{1}{p}} \tu{ for } p \in [1,\infty)$$
 given that $\c{silver} f(x)$ is {{<col "#87CEEB">}} continuous {{</col>}} on $\c{pink} [a,b]$
@@ -179,9 +189,9 @@ given that $\c{silver} f(x)$ is {{<col "#87CEEB">}} continuous {{</col>}} on $\c
 Use [Lemma 69](../norm/#unit-ball) to prove the $\c{pink} \Delta$ inequality.
 {{</toggle>}}
 {{</prob>}} <br>
-{{<prob 9>}}
+{{<prob 9 "nf4">}}
 {{<tip "warn">}}
-Similar to [Problem 3a.](../norm/#problems)
+Similar to {{< plink href="../norm/#norm3a" text="Norms Problem 3a." >}}
 {{</tip>}}
 4. Let $\c{#B9F2FF} f$ be {{<col "#87CEEB">}} continuous {{</col>}} on $\c{pink} [a,b]$, then show that $$\Large \c{orange} \lim_{n \to \infty} \left(\int_a^b |f(x)|^n \\: \tu{d}x \right)^{\Large \f{1}{n}} = \c{red} \max_{x \in [a,b]} f(x)$$
 or in other words, the *maximal* value attained by $\c{#B9F2FF} f$ in $\c{pink} [a,b]$
@@ -189,4 +199,3 @@ or in other words, the *maximal* value attained by $\c{#B9F2FF} f$ in $\c{pink} 
 Might require you to dust off those old {{<col "cyan">}} Analysis II {{</col>}} notes :P
 {{</tip>}}
 {{</prob>}}
-

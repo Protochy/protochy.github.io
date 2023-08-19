@@ -1,0 +1,3 @@
+{{ $uID := (md5 (print (now))) }} <span class="popup-wrapper"><a href="{{ .Get "href" }}" class="popup-link" data-target="pbox-{{$uID}}">{{ .Get "text" }}</a>
+<span class="pbox" id="pbox-{{$uID}}"> <iframe scrolling="yes" id="{{$uID}}1" src="{{ .Get "href" }}" width="500px" height="500px" onload='loonify("pbox-{{$uID}}")'></iframe> 
+</span></span> 

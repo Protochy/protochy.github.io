@@ -80,7 +80,7 @@ Just to be crystal clear. A {{<arcol>}} norm {{</arcol>}} $\c{orchid} |\x|$ is a
 
 we're gonna see a pretty nifty proof soon, but first let's go through one more definition {{<kekwait>}} *<h4> Ahem  </h4>* 
 
-<h3> A normed space is $\c{turquoise} (V,|\x|)$ </h3> 
+<div id="normnormedspace"> <h3> A normed space is $\c{turquoise} (V,|\x|)$ </h3> </div>
 Yeah, that's all LMAO.
 {{<tip>}}
 Honestly, I think of {{<col "violet">}} *spaces* {{</col>}} in maths like objects in programming:
@@ -114,7 +114,7 @@ Do you believe me?
 {{</centr>}}
 
 well tbh it doesn't matter if you don't believe me because we're gonna prove it.
-$$\Large \c{violet} \mathfrak{B} = \\{\vec{x} \in X \Biggm\vert |\vec{x}| \leqslant 1\\}$$
+$$\Large \c{violet} \mathfrak{B} = \\{\vec{x} \in V \Biggm\vert |\vec{x}| \leqslant 1\\}$$
 i.e. the set of all vectors $\c{orchid} \vec{x}$ that have "length" (i should just start using the word norm) $\c{magenta} \leqslant 1$   
 
 What does it mean to represent a line between two vectors? Well, the idea of {{<rcol>}} linear interpolation {{</rcol>}} comes to mind.  
@@ -217,7 +217,7 @@ $$\Large \c{cyan} |\vec{v}| = \sum_{i=1}^n |v_i|$$
 Show that this **is** a norm.
 {{</prob>}}
 <br>
-{{<prob 7>}}
+{{<prob 7 "norm3a">}}
 3a. Given a sequence of $\c{orange} n$ reals $\c{pink} x_1,x_2,\dotsc,x_n$, show that $$\large \c{lime} \left(\sum_{i=1}^n |x_i|^m\right)^{\large \frac{1}{m}} \to \max(|x_1|,|x_2|,\dotsc,|x_n|) \tu{ as } \c{orange} m \to \infty$$  
 {{<toggle "Hint 1" "Hide hint">}}
 Try bounding it from above and below, then use the {{<col "cyan">}} Squeeze/Sandwich Theorem {{</col>}}
@@ -241,7 +241,7 @@ and as $\c{orange} m \to \infty$, we have $\c{chartreuse} n^{\large \frac{1}{m}}
 {{</toggle>}}
 {{</prob>}}
 <br>
-{{<prob 3>}}
+{{<prob 3 "norm3b">}}
 {{<tip "warn">}}
 {{<col "red">}} Problem 3a {{</col>}} must be done first!
 {{</tip>}}

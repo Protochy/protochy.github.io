@@ -1,5 +1,6 @@
 <!-- layouts/shortcodes/prob.html -->
 {{ $difficulty := .Get 0 }}
+{{ $probId := .Get 1 }}
 {{ $color := "white" }}
 {{ if eq $difficulty "easy" }}{{ $difficulty = 2 }}{{ end }}
 {{ if eq $difficulty "med" }}{{ $difficulty = 5 }}{{ end }}
@@ -22,7 +23,7 @@
 {{ if eq $difficulty 11 }}{{ $r = 170 }}{{ $g = 85 }}{{ $b = 128 }}{{ end }}
 {{ if eq $difficulty 12 }}{{ $r = 128 }}{{ $g = 0 }}{{ $b = 128 }}{{ end }}
 {{ $color := printf "rgb(%d,%d,%d)" $r $g $b }}
-<div style="display: block;">
+<div style="display: block;" {{ with $probId }}id="{{ . }}"{{ end }}>
 <div style="position: relative; display: inline-block; max-width:100% !important; border: 3px solid {{ $color | safeCSS}}; border-radius: 10px; padding: 5px 16px; text-align: left; background-color:{{ .Get 1 | default "transparent" }}; color:{{ .Get 2 | default "inherit" }}; overflow-x: auto; overflow-y: hidden;">
 {{ if lt $difficulty 5 }}
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 531.74 460.5" class="diffshape1" style="position: absolute; top: 7px; right: 7px;">
