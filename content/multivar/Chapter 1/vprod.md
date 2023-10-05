@@ -29,7 +29,7 @@ Formula 1. Scalar (Dot) Product
 $$\c{lime} \Large \vec{a} \x \vec{b} = \c{pink} \left|\vec{a}\right| \x \left|\vec{b}\right| \x \cos(\theta) = \c{turquoise} \sum_{i=1}^{n} a_i b_i$$
 
 {{< toggle showText="Show proof" hideText="Hide proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 
 lol
 {{< /toggle >}}
@@ -99,13 +99,13 @@ Distributes, scalar mult,yadda yadad
 | Properties      | Description |
 | ----------- | ----------- |
 | Scalar multiplication      | $\c{pink} \vec{a} \x (c\vec{b}) = c(\vec{a} \x \vec{b})$ for some scalar (NOOOOOMBER) $\c{pink} c$ {{< toggle showText="Show proof" hideText="Hide proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}      |
 | Distributivity (over addition)  | $\c{violet} \vec{a} \x (\vec{b} + \vec{c}) = \vec{a} \x \vec{b} + \vec{a} \x \vec{c}$ mmmm very nice{{< toggle showText="Show proof" hideText="Hide proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}        |
 | Commutativity  | $\c{magenta} \vec{a} \x \vec{b} = \vec{b} \x \vec{a}${{< toggle showText="Show proof" hideText="Die proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}        |
 
 note that Scalar mult and Commutativity are pretty visually intuitive to prove.
@@ -127,7 +127,7 @@ Formula 2a. Vector (Cross) Product
 $$\c{orange} \Large \vec{a} \times \vec{b} = \c{orange} \det\left(\begin{bmatrix} \vec{i} & \vec{j} & \vec{k} \\\ \c{lime} \vec{a}_1 & \c{lime} \vec{a}_2 & \c{lime} \vec{a}_3 \\\ \c{pink} \vec{b}_1 & \c{pink} \vec{b}_2 & \c{pink} \vec{b}_3 \\\ \end{bmatrix} \c{orange}\right) = \vecT{\c{lime} a_2 \c{pink} b_3 - \c{lime} a_3 \c{pink} b_2}{\c{lime} a_3 \c{pink} b_1 - \c{lime} a_1 \c{pink} b_3}{\c{lime} a_1 \c{pink} b_2 - \c{lime} a_2 \c{pink} b_1}$$
 
 {{< toggle showText="Show proof" hideText="Hide proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}
 {{</ box >}}
 
@@ -156,13 +156,13 @@ Distributes, scalar mult,yadda yadad
 | Properties      | Description |
 | ----------- | ----------- |
 | Scalar multiplication      | $\c{pink} \vec{a} \times (c\vec{b}) = c(\vec{a} \times \vec{b})$ for some scalar (NOOOOOMBER) $\c{pink} c$ {{< toggle showText="Show proof" hideText="Hide proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}      |
 | Anticommutative      | $\c{orange} \vec{a} \times \vec{b} = -\vec{b} \times \vec{a}$ {{< toggle showText="Show proof" hideText="Hide proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}      |
 | Distributivity (over addition)  | $\c{violet} \vec{a} \times (\vec{b} + \vec{c}) = \vec{a} \times \vec{b} + \vec{a} \times \vec{c}$ mmmm also very nice{{< toggle showText="Show proof" hideText="Hide proof" >}}
-hi reeshav, figure it out yourself (kidding itll come soon)
+hi you, figure it out yourself (kidding itll come soon)
 {{< /toggle >}}        |
 
 note that Scalar mult and Anticommutativity are pretty visually intuitive using {{< rcol >}} geometry {{</ rcol >}} to prove.

@@ -1,6 +1,6 @@
 ---
 title: Norm Sequences
-weight: 2005
+weight: 4005
 description: >
   An sequence of norms!
 ---

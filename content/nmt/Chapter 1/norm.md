@@ -1,6 +1,6 @@
 ---
 title: "Norm"
-weight: 2003
+weight: 4003
 description: >
   Generalised length. 
 ---
@@ -35,7 +35,7 @@ This one is a bit of a pain in the ass but oh well you take the good with the ba
 the way I intuitively understand the tringle inequality is that it's an effort to make any norm more relatable to the traditional length we are used to, and also maybe because if it doesn't hold some very weird stuff happens {{<kekwait>}}
 {{</tip>}}
 
-Anyway, if a "length" satisfies all these axioms then it's a &nbsp;<span class="inline-header">{{<arcol>}} **norm!** {{</arcol>}}</span>
+Anyway, if a "length" satisfies all these axioms then it's a <span class="inline-header">{{<arcol>}} **norm!** {{</arcol>}}</span>
 {{</cbox>}}
 {{</centr>}}
 <br>

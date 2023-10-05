@@ -1,6 +1,6 @@
 ---
 title: "Norms, Metrics, and Topologies"
-weight: 2000
+weight: 4000
 ---
 <style>
     .inline-header {

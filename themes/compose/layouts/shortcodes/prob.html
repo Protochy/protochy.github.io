@@ -40,6 +40,6 @@
 </svg>{{ else if eq $difficulty 12 }}
 <!-- Add appropriate shape for "imp" if needed -->
 {{ end }}
-<div style="font-size: {{ if lt $difficulty 5 }}18px{{ else }}22px{{ end }}; position: absolute; top: {{ if lt $difficulty 5 }}0px{{ else }}-3px{{ end }}; right: {{ if lt $difficulty 5 }}5.5px{{ else }}5px{{ end }}; color: rgb(40,40,40); padding: 11px {{ if eq $difficulty 1}}14px {{else if eq $difficulty 0}} 11px {{else if eq $difficulty 10}} 8px {{else}}12px{{end}} 5px 5px;">{{ $difficulty }}</div>
+<div style="font-size: {{ if and (gt $difficulty 4) (lt $difficulty 10) }}21px {{ else }}18.5px{{ end }}; position: absolute; top: {{ if and (gt $difficulty 4) (lt $difficulty 10) }}-2px{{ else }}0px{{ end }}; right: {{ if and (gt $difficulty 4) (lt $difficulty 10) }}6.5px {{else if eq $difficulty 4}} 6.5px {{else if gt $difficulty 9}} 2.8px {{ else }}5px{{ end }}; color: rgb(40,40,40); padding: 11px;">${{ $difficulty }}$</div>
 <div style="padding: 5px 50px 5px 5px;">{{ .Inner | markdownify }}</div>
 </div></div>

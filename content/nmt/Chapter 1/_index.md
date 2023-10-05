@@ -1,6 +1,6 @@
 ---
 title: "Chapter 1: Distance"
-weight: 2002
+weight: 4002
 description: >
   When the notion of distance receives the abstract treatment.
 ---

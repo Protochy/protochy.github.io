@@ -1,6 +1,6 @@
 ---
 title: Norm families
-weight: 2004
+weight: 4004
 description: >
   An entire infinite class of norms!
 ---
